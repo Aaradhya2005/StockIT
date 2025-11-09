@@ -107,53 +107,24 @@ def view_database_summary():
                 print(f"    Source: {source} | Date: {published_at}")
         
         print("\n" + "="*50)
-        print("STOCK TICKS DATA")
+        print("SENTIMENT ANALYSIS DATA")
         print("="*50)
-        cursor.execute('SELECT COUNT(*) FROM stock_ticks;')
-        tick_count = cursor.fetchone()[0]
-        print(f"Total tick records: {tick_count:,}")
-        
-        if tick_count > 0:
+        cursor.execute('SELECT COUNT(*) FROM sentiment_analysis;')
+        sentiment_count = cursor.fetchone()[0]
+        print(f"Total sentiment analysis records: {sentiment_count:,}")
+
+        if sentiment_count > 0:
             cursor.execute("""
-                SELECT s.symbol, st.timestamp, st.price, st.volume 
-                FROM stock_ticks st 
-                JOIN stocks s ON st.stock_id = s.stock_id 
-                ORDER BY st.timestamp DESC 
-                LIMIT 5;
+                SELECT sa.analysis_model, AVG(sa.sentiment_score), sa.sentiment_label
+                FROM sentiment_analysis sa
+                GROUP BY sa.analysis_model, sa.sentiment_label
+                ORDER BY sa.analysis_model, sa.sentiment_label;
             """)
-            ticks = cursor.fetchall()
-            print("\nLatest tick data:")
-            for symbol, timestamp, price, volume in ticks:
-                print(f"   {symbol:6} | {timestamp} | ${float(price):8.2f} | Vol: {volume:,}")
-        
-        print("\n" + "="*50)
-        print("DATA FRESHNESS")
-        print("="*50)
-        
-        cursor.execute("""
-            SELECT MAX(date) as latest_price_date 
-            FROM stock_prices;
-        """)
-        latest_price = cursor.fetchone()[0]
-        if latest_price:
-            print(f"Latest stock price data: {latest_price}")
-        
-        cursor.execute("""
-            SELECT MAX(published_at) as latest_news_date 
-            FROM financial_news;
-        """)
-        latest_news = cursor.fetchone()[0]
-        if latest_news:
-            print(f"Latest news article: {latest_news}")
-        
-        cursor.execute("""
-            SELECT MAX(timestamp) as latest_tick_time 
-            FROM stock_ticks;
-        """)
-        latest_tick = cursor.fetchone()[0]
-        if latest_tick:
-            print(f"Latest tick data: {latest_tick}")
-        
+            sentiments = cursor.fetchall()
+            print("\nSentiment analysis summary:")
+            for model, avg_score, label in sentiments:
+                print(f"   Model: {model}, Label: {label}, Avg Score: {avg_score:.2f}")
+
     except Exception as e:
         print(f"Error viewing database: {e}")
     
@@ -179,6 +150,7 @@ def view_specific_stock(symbol):
             print(f"Stock {symbol.upper()} not found in database")
             return
         
+        stock_id = stock[0]
         print(f"Company: {stock[1]}")
         print(f"Symbol: {stock[2]}")
         print(f"Sector: {stock[3] if stock[3] else 'N/A'}")
@@ -191,7 +163,7 @@ def view_specific_stock(symbol):
             WHERE stock_id = %s 
             ORDER BY date DESC 
             LIMIT 10;
-        """, (stock[0],))
+        """, (stock_id,))
         
         prices = cursor.fetchall()
         if prices:
@@ -200,7 +172,34 @@ def view_specific_stock(symbol):
             print("-" * 65)
             for date, open_p, high, low, close, volume in prices:
                 print(f"{date} | ${float(open_p):6.2f} | ${float(high):6.2f} | ${float(low):6.2f} | ${float(close):6.2f} | {volume:,}")
-        
+
+        # Fetch and display news for the specific stock (LEFT JOIN to show news even without sentiment)
+        cursor.execute("""
+            SELECT fn.title, fn.published_at, 
+                   COALESCE(sa.sentiment_label, 'N/A') as sentiment_label, 
+                   COALESCE(sa.sentiment_score, 0.0) as sentiment_score, 
+                   COALESCE(sa.analysis_model, 'N/A') as analysis_model
+            FROM financial_news fn
+            JOIN stock_news_relations snr ON fn.news_id = snr.news_id
+            LEFT JOIN sentiment_analysis sa ON fn.news_id = sa.news_id
+            WHERE snr.stock_id = %s
+            ORDER BY fn.published_at DESC
+            LIMIT 10;
+        """, (stock_id,))
+
+        news_articles = cursor.fetchall()
+        if news_articles:
+            print("\nRecent News and Sentiment:")
+            print("-" * 80)
+            for title, published_at, label, score, model in news_articles:
+                print(f"Title: {title[:70]}")
+                if label != 'N/A':
+                    print(f"  Published: {published_at} | Sentiment: {label} ({score:.2f}) | Model: {model}")
+                else:
+                    print(f"  Published: {published_at} | Sentiment: Not analyzed yet")
+        else:
+            print("\nNo news articles found for this stock.")
+
     except Exception as e:
         print(f"Error viewing stock data: {e}")
     
@@ -219,12 +218,12 @@ def view_news_sources():
     print("="*40)
     
     try:
-        cursor.execute('SELECT source_name, url FROM news_sources ORDER BY source_name;')
+        cursor.execute('SELECT source_name, source_url FROM news_sources ORDER BY source_name;')
         sources = cursor.fetchall()
         
-        for source_name, url in sources:
+        for source_name, source_url in sources:
             print(f" {source_name}")
-            print(f"  URL: {url}")
+            print(f"  URL: {source_url if source_url else 'N/A'}")
         
     except Exception as e:
         print(f"Error viewing news sources: {e}")

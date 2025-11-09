@@ -14,7 +14,7 @@ from database_models import (
     StockNewsRelation, SentimentAnalysis, DailyStockSummary
 )
 from yahoo_finance_fetcher import YahooFinanceDataFetcher
-from news_api_fetcher import NewsAPIFetcher
+from marketaux_news_fetcher import MarketauxNewsFetcher
 from sentiment_analyzer import SentimentAnalyzer
 
 logging.basicConfig(
@@ -27,35 +27,38 @@ logger = logging.getLogger(__name__)
 class ETLPipeline:
     def __init__(self):
         self.yahoo_finance = YahooFinanceDataFetcher()
-        self.news_api = NewsAPIFetcher()
+        self.news_api = MarketauxNewsFetcher()
         self.sentiment_analyzer = SentimentAnalyzer()
         self.session = db_manager.get_session()
-        self.tracked_symbols = ['AAPL', 'GOOGL', 'MSFT', 'AMZN', 'TSLA', 'NVDA', 'META', 'NFLX']
+        self.tracked_symbols = []
+        self.load_tracked_symbols()
         logger.info("ETL Pipeline initialized")
+
+    def load_tracked_symbols(self):
+        """Load tracked symbols from the database."""
+        try:
+            stocks = self.session.query(Stock.symbol).filter_by(is_active=True).all()
+            self.tracked_symbols = [stock.symbol for stock in stocks]
+            logger.info(f"Loaded {len(self.tracked_symbols)} tracked symbols from the database.")
+        except Exception as e:
+            logger.error(f"Error loading tracked symbols: {e}")
+            self.tracked_symbols = ['AAPL', 'GOOGL', 'MSFT', 'AMZN', 'TSLA', 'NVDA', 'META', 'NFLX'] # Fallback
     
     def extract_stock_data(self, symbol: str) -> Optional[pd.DataFrame]:
         try:
             logger.info(f"Extracting stock data for {symbol}")
+            # Using yahoo_finance_fetcher now - returns DataFrame directly
             data = self.yahoo_finance.get_daily_stock_data(symbol, period='5d')
-            
-            if data and 'Time Series (Daily)' in data:
-                df_data = []
-                for date_str, values in data['Time Series (Daily)'].items():
-                    df_data.append({
-                        'date': pd.to_datetime(date_str),
-                        'open': float(values['1. open']),
-                        'high': float(values['2. high']),
-                        'low': float(values['3. low']),
-                        'close': float(values['4. close']),
-                        'volume': int(values['5. volume']),
-                        'symbol': symbol
-                    })
-                
-                df = pd.DataFrame(df_data).sort_values('date')
-                if not df.empty:
-                    logger.info(f"Extracted {len(df)} records for {symbol}")
-                    return df
-            
+
+            if data is not None and isinstance(data, pd.DataFrame) and not data.empty:
+                # Data is already a DataFrame with Date as a column (reset_index was done in fetcher)
+                # Rename columns to match database schema
+                df = data.copy()
+                df.rename(columns={'Date': 'date', 'Open': 'open', 'High': 'high', 'Low': 'low', 'Close': 'close', 'Volume': 'volume'}, inplace=True)
+                df['symbol'] = symbol
+                logger.info(f"Extracted {len(df)} records for {symbol}")
+                return df
+
             logger.warning(f"No data received for {symbol}")
             return None
         except Exception as e:
@@ -86,17 +89,13 @@ class ETLPipeline:
                 data = self.news_api.get_top_headlines(category='business', page_size=50)
             
             if data is not None:
-                # Convert dict to DataFrame
                 df = self.news_api.format_news_to_dataframe(data)
                 if df is not None and not df.empty:
                     logger.info(f"Successfully extracted {len(df)} news articles")
                     return df
-                else:
-                    logger.warning("No news data received")
-                    return None
-            else:
-                logger.warning("No news data received")
-                return None
+            
+            logger.warning("No news data received for extraction")
+            return None
                 
         except Exception as e:
             logger.error(f"Error extracting news data: {e}")
@@ -110,7 +109,7 @@ class ETLPipeline:
             for index, row in data.iterrows():
                 transformed_record = {
                     'symbol': symbol,
-                    'date': row['date'].date() if hasattr(row['date'], 'date') else row['date'],
+                    'date': row['date'].date() if hasattr(row['date'], 'date') else pd.to_datetime(row['date']).date(),
                     'open_price': float(row['open']),
                     'high_price': float(row['high']),
                     'low_price': float(row['low']),
@@ -118,7 +117,6 @@ class ETLPipeline:
                     'volume': int(row['volume'])
                 }
                 
-                # Set adjusted close to close price for Yahoo Finance data
                 transformed_record['adjusted_close'] = transformed_record['close_price']
                 
                 transformed_data.append(transformed_record)
@@ -136,7 +134,6 @@ class ETLPipeline:
             transformed_data = []
             
             for _, row in data.iterrows():
-                # Parse published date
                 published_at = pd.to_datetime(row['publishedAt']).to_pydatetime()
                 
                 transformed_record = {
@@ -145,7 +142,7 @@ class ETLPipeline:
                     'author': row['author'][:255] if pd.notna(row['author']) else None,
                     'published_at': published_at,
                     'url': row['url'][:1000] if row['url'] else None,
-                    'source_name': row['source_name'] if 'source_name' in row else 'Unknown'
+                    'source_name': row['source_name'] if 'source_name' in row and pd.notna(row['source_name']) else 'Unknown'
                 }
                 
                 transformed_data.append(transformed_record)
@@ -161,26 +158,22 @@ class ETLPipeline:
         """Load stock data into database."""
         try:
             for record in transformed_data:
-                # Get or create stock
                 stock = self.session.query(Stock).filter_by(symbol=record['symbol']).first()
                 if not stock:
-                    # Create new stock record (basic info, will be updated later)
                     stock = Stock(
                         symbol=record['symbol'],
-                        company_name=record['symbol'],  # Placeholder
+                        company_name=record['symbol'],
                         is_active=True
                     )
                     self.session.add(stock)
-                    self.session.flush()  # Get the stock_id
+                    self.session.flush()
                 
-                # Check if price record already exists
                 existing_price = self.session.query(StockPrice).filter_by(
                     stock_id=stock.stock_id,
                     date=record['date']
                 ).first()
                 
                 if not existing_price:
-                    # Create new price record
                     price_record = StockPrice(
                         stock_id=stock.stock_id,
                         date=record['date'],
@@ -188,7 +181,7 @@ class ETLPipeline:
                         high_price=record['high_price'],
                         low_price=record['low_price'],
                         close_price=record['close_price'],
-                        adjusted_close=record['adjusted_close'],
+                        adjusted_close=record.get('adjusted_close', record['close_price']),
                         volume=record['volume']
                     )
                     self.session.add(price_record)
@@ -207,17 +200,10 @@ class ETLPipeline:
         try:
             stock = self.session.query(Stock).filter_by(symbol=symbol).first()
             if stock:
-                # Update existing stock with company info
-                stock.company_name = company_info.get('Name', symbol)[:255]
-                stock.sector = company_info.get('Sector', '')[:100]
-                stock.exchange = company_info.get('Exchange', '')[:50]
-                
-                # Parse market cap
-                market_cap_str = company_info.get('MarketCapitalization', '0')
-                try:
-                    stock.market_cap = int(market_cap_str) if market_cap_str != 'None' else None
-                except (ValueError, TypeError):
-                    stock.market_cap = None
+                stock.company_name = company_info.get('longName', symbol)[:255]
+                stock.sector = company_info.get('sector', '')[:100]
+                stock.exchange = company_info.get('exchange', '')[:50]
+                stock.market_cap = int(company_info.get('marketCap', 0))
                 
                 self.session.commit()
                 logger.info(f"Updated company info for {symbol}")
@@ -231,11 +217,24 @@ class ETLPipeline:
             logger.error(f"Error loading company data for {symbol}: {e}")
             return False
     
-    def load_news_data(self, transformed_data: List[Dict]) -> bool:
-        """Load news data into database."""
+    def load_news_data(self, transformed_data: List[Dict], symbol: str = None) -> bool:
+        """Load news data into database.
+        
+        Args:
+            transformed_data: List of news records to load
+            symbol: Optional stock symbol to directly link news to
+        """
         try:
+            news_records_to_process = []
+            target_stock = None
+            
+            # If symbol is provided, get the stock for direct linking
+            if symbol:
+                target_stock = self.session.query(Stock).filter_by(symbol=symbol.upper()).first()
+                if target_stock:
+                    logger.info(f"Will directly link news to stock: {symbol.upper()}")
+            
             for record in transformed_data:
-                # Get or create news source
                 source = self.session.query(NewsSource).filter_by(
                     source_name=record['source_name']
                 ).first()
@@ -243,19 +242,17 @@ class ETLPipeline:
                 if not source:
                     source = NewsSource(
                         source_name=record['source_name'],
-                        credibility_score=0.50,  # Default credibility
+                        credibility_score=0.50,
                         is_active=True
                     )
                     self.session.add(source)
                     self.session.flush()
                 
-                # Check if news article already exists
                 existing_news = self.session.query(FinancialNews).filter_by(
                     url=record['url']
                 ).first()
                 
                 if not existing_news and record['url']:
-                    # Create new news record
                     news_record = FinancialNews(
                         source_id=source.source_id,
                         title=record['title'],
@@ -265,13 +262,19 @@ class ETLPipeline:
                         url=record['url']
                     )
                     self.session.add(news_record)
-                    self.session.flush()
-                    
-                    # Perform sentiment analysis
-                    self.analyze_and_store_sentiment(news_record)
+                    news_records_to_process.append((news_record, target_stock))
+
+            self.session.flush() # Flush to get news_id for new records
+
+            for news_record, direct_stock in news_records_to_process:
+                self.analyze_and_store_sentiment(news_record)
+                # Link news: first try direct link if symbol was provided, then text-based matching
+                if direct_stock:
+                    self.link_news_to_stock_direct(news_record, direct_stock)
+                self.link_news_to_stocks(news_record)
             
             self.session.commit()
-            logger.info(f"Successfully loaded {len(transformed_data)} news records")
+            logger.info(f"Successfully loaded and processed {len(news_records_to_process)} news records")
             return True
             
         except Exception as e:
@@ -282,15 +285,12 @@ class ETLPipeline:
     def analyze_and_store_sentiment(self, news_record: FinancialNews):
         """Analyze sentiment for a news article and store results."""
         try:
-            # Combine title and content for analysis
             text_to_analyze = f"{news_record.title} {news_record.content or ''}"
             
-            # Analyze with VADER
             vader_result = self.sentiment_analyzer.analyze_financial_sentiment(
                 text_to_analyze, 'vader'
             )
             
-            # Store VADER sentiment
             vader_sentiment = SentimentAnalysis(
                 news_id=news_record.news_id,
                 sentiment_score=vader_result['sentiment_score'],
@@ -300,12 +300,10 @@ class ETLPipeline:
             )
             self.session.add(vader_sentiment)
             
-            # Analyze with TextBlob
             textblob_result = self.sentiment_analyzer.analyze_financial_sentiment(
                 text_to_analyze, 'textblob'
             )
             
-            # Store TextBlob sentiment
             textblob_sentiment = SentimentAnalysis(
                 news_id=news_record.news_id,
                 sentiment_score=textblob_result['sentiment_score'],
@@ -315,40 +313,52 @@ class ETLPipeline:
             )
             self.session.add(textblob_sentiment)
             
-            logger.info(f"Sentiment analysis completed for news ID: {news_record.news_id}")
-            
         except Exception as e:
             logger.error(f"Error in sentiment analysis for news ID {news_record.news_id}: {e}")
+    
+    def link_news_to_stock_direct(self, news_record: FinancialNews, stock: Stock):
+        """Directly link a news article to a specific stock."""
+        try:
+            existing_relation = self.session.query(StockNewsRelation).filter_by(
+                stock_id=stock.stock_id,
+                news_id=news_record.news_id
+            ).first()
+            
+            if not existing_relation:
+                relation = StockNewsRelation(
+                    stock_id=stock.stock_id,
+                    news_id=news_record.news_id,
+                    relevance_score=0.90  # Higher score for direct links
+                )
+                self.session.add(relation)
+                logger.debug(f"Directly linked news {news_record.news_id} to stock {stock.symbol}")
+        except Exception as e:
+            logger.error(f"Error directly linking news to stock for news ID {news_record.news_id}: {e}")
     
     def link_news_to_stocks(self, news_record: FinancialNews):
         """Link news articles to relevant stocks based on content."""
         try:
             text_to_search = f"{news_record.title} {news_record.content or ''}".lower()
             
-            # Get all active stocks
-            stocks = self.session.query(Stock).filter_by(is_active=True).all()
+            stocks = self.session.query(Stock).filter(Stock.is_active==True).all()
             
             for stock in stocks:
-                # Check if stock symbol or company name is mentioned
                 if (stock.symbol.lower() in text_to_search or 
                     stock.company_name.lower() in text_to_search):
                     
-                    # Check if relation already exists
                     existing_relation = self.session.query(StockNewsRelation).filter_by(
                         stock_id=stock.stock_id,
                         news_id=news_record.news_id
                     ).first()
                     
                     if not existing_relation:
-                        # Create stock-news relation
                         relation = StockNewsRelation(
                             stock_id=stock.stock_id,
                             news_id=news_record.news_id,
-                            relevance_score=0.75  # Default relevance
+                            relevance_score=0.75
                         )
                         self.session.add(relation)
-            
-            logger.info(f"Linked news ID {news_record.news_id} to relevant stocks")
+                        logger.debug(f"Linked news {news_record.news_id} to stock {stock.symbol} via text matching")
             
         except Exception as e:
             logger.error(f"Error linking news to stocks for news ID {news_record.news_id}: {e}")
@@ -360,35 +370,18 @@ class ETLPipeline:
         try:
             success = False
             
-            # Extract and load stock price data
             stock_data = self.extract_stock_data(symbol)
             if stock_data is not None:
-                logger.info(f"Extracted stock data for {symbol}: {len(stock_data)} rows")
                 transformed_stock_data = self.transform_stock_data(stock_data, symbol)
                 if transformed_stock_data:
-                    logger.info(f"Transformed stock data for {symbol}: {len(transformed_stock_data)} records")
                     stock_success = self.load_stock_data(transformed_stock_data)
                     if stock_success:
                         success = True
                         logger.info(f"Successfully loaded stock data for {symbol}")
-                    else:
-                        logger.warning(f"Failed to load stock data for {symbol}")
-                else:
-                    logger.warning(f"No transformed stock data for {symbol}")
-            else:
-                logger.warning(f"No stock data extracted for {symbol}")
-            
-            # Extract and load company information
+
             company_info = self.extract_company_info(symbol)
             if company_info:
-                logger.info(f"Extracted company info for {symbol}")
-                company_success = self.load_company_data(company_info, symbol)
-                if company_success:
-                    logger.info(f"Successfully loaded company data for {symbol}")
-                else:
-                    logger.warning(f"Failed to load company data for {symbol}")
-            else:
-                logger.warning(f"No company info extracted for {symbol}")
+                self.load_company_data(company_info, symbol)
             
             logger.info(f"Completed ETL process for {symbol} - Success: {success}")
             return success
@@ -397,39 +390,43 @@ class ETLPipeline:
             logger.error(f"Error in ETL process for {symbol}: {e}")
             return False
     
-    def run_news_etl(self):
+    def run_news_etl(self, run_for_all_stocks=False):
         """Run complete ETL process for news data."""
         logger.info("Starting news ETL process")
         
-        # Extract general business news
+        # Fetch general market news
         news_data = self.extract_news_data()
         if news_data is not None:
             transformed_news_data = self.transform_news_data(news_data)
             if transformed_news_data:
-                self.load_news_data(transformed_news_data)
+                self.load_news_data(transformed_news_data)  # No symbol for general news
         
-        # Extract stock-specific news for tracked symbols
-        for symbol in self.tracked_symbols:
-            stock_news = self.extract_news_data(query=symbol)
-            if stock_news is not None:
-                transformed_stock_news = self.transform_news_data(stock_news)
-                if transformed_stock_news:
-                    self.load_news_data(transformed_stock_news)
+        if run_for_all_stocks:
+            self.load_tracked_symbols() # Refresh tracked symbols
+            for symbol in self.tracked_symbols:
+                logger.info(f"Fetching news for symbol: {symbol}")
+                stock_news = self.extract_news_data(query=symbol)
+                if stock_news is not None:
+                    transformed_stock_news = self.transform_news_data(stock_news)
+                    if transformed_stock_news:
+                        # Pass symbol to directly link news to this stock
+                        self.load_news_data(transformed_stock_news, symbol=symbol)
+                time.sleep(1) # Rate limiting
         
         logger.info("Completed news ETL process")
+        return True
     
     def run_full_etl(self):
         """Run complete ETL process for all tracked stocks and news."""
         logger.info("Starting full ETL pipeline")
         
         try:
-            # Process each tracked stock
+            self.load_tracked_symbols() # Refresh tracked symbols
             for symbol in self.tracked_symbols:
                 self.run_stock_etl(symbol)
-                time.sleep(1)  # Rate limiting
+                time.sleep(12)
             
-            # Process news data
-            self.run_news_etl()
+            self.run_news_etl(run_for_all_stocks=True)
             
             logger.info("Full ETL pipeline completed successfully")
             
@@ -440,13 +437,8 @@ class ETLPipeline:
         """Schedule ETL jobs to run at regular intervals."""
         logger.info("Scheduling ETL jobs")
         
-        # Schedule stock data updates (every 30 minutes during market hours)
         schedule.every(30).minutes.do(self.run_stock_updates)
-        
-        # Schedule news updates (every 15 minutes)
-        schedule.every(15).minutes.do(self.run_news_etl)
-        
-        # Schedule full ETL (once daily at market close)
+        schedule.every(15).minutes.do(lambda: self.run_news_etl(run_for_all_stocks=True))
         schedule.every().day.at("16:30").do(self.run_full_etl)
         
         logger.info("ETL jobs scheduled successfully")
@@ -454,18 +446,12 @@ class ETLPipeline:
     def run_stock_updates(self):
         """Run stock updates only (lighter than full ETL)."""
         logger.info("Running scheduled stock updates")
+        self.load_tracked_symbols()
         
         for symbol in self.tracked_symbols:
             try:
-                stock_data = self.extract_stock_data(symbol)
-                if stock_data is not None:
-                    # Only get the latest data (last 5 days)
-                    recent_data = stock_data.head(5)
-                    transformed_data = self.transform_stock_data(recent_data, symbol)
-                    if transformed_data:
-                        self.load_stock_data(transformed_data)
-                
-                time.sleep(1)  # Rate limiting
+                self.run_stock_etl(symbol)
+                time.sleep(12)
                 
             except Exception as e:
                 logger.error(f"Error in stock update for {symbol}: {e}")
@@ -474,16 +460,42 @@ class ETLPipeline:
         """Start the ETL scheduler."""
         logger.info("Starting ETL scheduler")
         
-        # Schedule jobs
         self.schedule_etl_jobs()
         
-        # Run initial ETL
+        logger.info("Running initial full ETL...")
         self.run_full_etl()
         
-        # Keep scheduler running
         while True:
             schedule.run_pending()
-            time.sleep(60)  # Check every minute
+            time.sleep(60)
+    
+    def link_existing_news_to_stocks(self):
+        """Retroactively link existing news articles to stocks based on content."""
+        logger.info("Linking existing news articles to stocks...")
+        try:
+            # Get all news articles that don't have stock relations yet
+            all_news = self.session.query(FinancialNews).all()
+            linked_count = 0
+            
+            for news_record in all_news:
+                # Check if this news already has any relations
+                existing_relations = self.session.query(StockNewsRelation).filter_by(
+                    news_id=news_record.news_id
+                ).count()
+                
+                if existing_relations == 0:
+                    # This news hasn't been linked yet, try to link it
+                    self.link_news_to_stocks(news_record)
+                    linked_count += 1
+            
+            self.session.commit()
+            logger.info(f"Linked {linked_count} existing news articles to stocks")
+            return True
+            
+        except Exception as e:
+            self.session.rollback()
+            logger.error(f"Error linking existing news: {e}")
+            return False
     
     def close(self):
         """Clean up resources."""
@@ -492,14 +504,10 @@ class ETLPipeline:
         logger.info("ETL Pipeline closed")
 
 if __name__ == "__main__":
-    # Initialize and run ETL pipeline
     etl = ETLPipeline()
     
     try:
-        # Create database tables if they don't exist
         db_manager.create_tables()
-        
-        # Start the scheduler
         etl.start_scheduler()
         
     except KeyboardInterrupt:

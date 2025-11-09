@@ -51,7 +51,7 @@ def setup_database():
         cursor = conn.cursor()
         
         # Read and execute the create_tables.sql file
-        with open('create_tables.sql', 'r') as f:
+        with open('sql/create_tables.sql', 'r') as f:
             sql_commands = f.read()
         
         # Execute the SQL commands

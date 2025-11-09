@@ -23,16 +23,18 @@ class Config:
     def validate_keys(cls):
         """Validate that all required API keys are present"""
         missing_keys = []
-        
-        if not cls.ALPHA_VANTAGE_API_KEY:
-            missing_keys.append('ALPHA_VANTAGE_API_KEY')
-        
-        if not cls.NEWS_API_KEY:
-            missing_keys.append('NEWS_API_KEY')
-        
+
+        # Alpha Vantage is now optional since we use Yahoo Finance for stock data
+        # if not cls.ALPHA_VANTAGE_API_KEY:
+        #     missing_keys.append('ALPHA_VANTAGE_API_KEY')
+
+        # News API is optional - we can run without news
+        # if not cls.NEWS_API_KEY:
+        #     missing_keys.append('NEWS_API_KEY')
+
         if missing_keys:
             raise ValueError(f"Missing API keys: {', '.join(missing_keys)}. Please check your .env file.")
-        
+
         return True
 
 def validate_api_keys():
