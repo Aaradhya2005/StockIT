@@ -6876,3 +6876,965 @@ DETAIL:  Key (stock_id, news_id)=(30, 84) already exists.
 2025-11-09 15:23:52,801 - INFO - Successfully fetched and stored news!
 2025-11-09 15:23:52,801 - INFO - You can now view the news in view_database.py
 2025-11-09 15:23:52,802 - INFO - ETL Pipeline closed
+2025-11-10 11:00:15,371 - INFO - ============================================================
+2025-11-10 11:00:15,372 - INFO - STARTING CONTINUOUS STOCK TRACKING
+2025-11-10 11:00:15,373 - INFO - ============================================================
+2025-11-10 11:00:15,373 - INFO - OK API keys validated successfully
+2025-11-10 11:00:15,375 - INFO - OK Database connection established
+2025-11-10 11:00:15,591 - INFO - Loaded 0 tracked symbols from the database.
+2025-11-10 11:00:15,592 - INFO - ETL Pipeline initialized
+2025-11-10 11:00:15,592 - INFO - OK ETL Pipeline initialized
+2025-11-10 11:00:15,592 - INFO - Loading companies from the database...
+2025-11-10 11:00:15,738 - WARNING - No active companies found in the database. Please add some stocks first.
+2025-11-10 11:00:15,739 - ERROR - No companies to track. Exiting.
+2025-11-10 11:05:20,673 - INFO - ============================================================
+2025-11-10 11:05:20,673 - INFO - STARTING CONTINUOUS STOCK TRACKING FOR TOP 20 COMPANIES
+2025-11-10 11:05:20,674 - INFO - ============================================================
+2025-11-10 11:05:20,925 - INFO - Loaded 0 tracked symbols from the database.
+2025-11-10 11:05:20,925 - INFO - ETL Pipeline initialized
+2025-11-10 11:05:20,928 - INFO - Tracking 31 companies:
+2025-11-10 11:05:20,929 - INFO -   - AAPL: Apple Inc
+2025-11-10 11:05:20,929 - INFO -   - MSFT: Microsoft Corporation
+2025-11-10 11:05:20,930 - INFO -   - GOOGL: Alphabet Inc
+2025-11-10 11:05:20,930 - INFO -   - AMZN: Amazon.com Inc
+2025-11-10 11:05:20,930 - INFO -   - NVDA: NVIDIA Corporation
+2025-11-10 11:05:20,931 - INFO -   - TSLA: Tesla Inc
+2025-11-10 11:05:20,932 - INFO -   - META: Meta Platforms Inc
+2025-11-10 11:05:20,933 - INFO -   - BRK.B: Berkshire Hathaway Inc
+2025-11-10 11:05:20,933 - INFO -   - UNH: UnitedHealth Group Inc
+2025-11-10 11:05:20,934 - INFO -   - JNJ: Johnson & Johnson
+2025-11-10 11:05:20,938 - INFO -   - JPM: JPMorgan Chase & Co
+2025-11-10 11:05:20,938 - INFO -   - V: Visa Inc
+2025-11-10 11:05:20,939 - INFO -   - PG: Procter & Gamble Co
+2025-11-10 11:05:20,944 - INFO -   - XOM: Exxon Mobil Corporation
+2025-11-10 11:05:20,944 - INFO -   - HD: Home Depot Inc
+2025-11-10 11:05:20,945 - INFO -   - CVX: Chevron Corporation
+2025-11-10 11:05:20,945 - INFO -   - MA: Mastercard Inc
+2025-11-10 11:05:20,946 - INFO -   - BAC: Bank of America Corp
+2025-11-10 11:05:20,946 - INFO -   - ABBV: AbbVie Inc
+2025-11-10 11:05:20,946 - INFO -   - PFE: Pfizer Inc
+2025-11-10 11:05:20,946 - INFO -   - KO: The Coca-Cola Company
+2025-11-10 11:05:20,947 - INFO -   - AVGO: Broadcom Inc
+2025-11-10 11:05:20,947 - INFO -   - TMO: Thermo Fisher Scientific Inc
+2025-11-10 11:05:20,947 - INFO -   - COST: Costco Wholesale Corporation
+2025-11-10 11:05:20,947 - INFO -   - WMT: Walmart Inc
+2025-11-10 11:05:20,947 - INFO -   - LLY: Eli Lilly and Company
+2025-11-10 11:05:20,947 - INFO -   - NFLX: Netflix Inc
+2025-11-10 11:05:20,948 - INFO -   - ADBE: Adobe Inc
+2025-11-10 11:05:20,948 - INFO -   - CRM: Salesforce Inc
+2025-11-10 11:05:20,948 - INFO -   - ORCL: Oracle Corporation
+2025-11-10 11:05:20,948 - INFO -   - ACN: Accenture plc
+2025-11-10 11:08:40,640 - INFO - ============================================================
+2025-11-10 11:08:40,643 - INFO - STARTING CONTINUOUS STOCK TRACKING FOR TOP 20 COMPANIES
+2025-11-10 11:08:40,644 - INFO - ============================================================
+2025-11-10 11:08:40,831 - INFO - Loaded 0 tracked symbols from the database.
+2025-11-10 11:08:40,831 - INFO - ETL Pipeline initialized
+2025-11-10 11:08:40,834 - INFO - Tracking 31 companies:
+2025-11-10 11:08:40,835 - INFO -   - AAPL: Apple Inc
+2025-11-10 11:08:40,835 - INFO -   - MSFT: Microsoft Corporation
+2025-11-10 11:08:40,835 - INFO -   - GOOGL: Alphabet Inc
+2025-11-10 11:08:40,836 - INFO -   - AMZN: Amazon.com Inc
+2025-11-10 11:08:40,836 - INFO -   - NVDA: NVIDIA Corporation
+2025-11-10 11:08:40,836 - INFO -   - TSLA: Tesla Inc
+2025-11-10 11:08:40,837 - INFO -   - META: Meta Platforms Inc
+2025-11-10 11:08:40,837 - INFO -   - BRK.B: Berkshire Hathaway Inc
+2025-11-10 11:08:40,838 - INFO -   - UNH: UnitedHealth Group Inc
+2025-11-10 11:08:40,839 - INFO -   - JNJ: Johnson & Johnson
+2025-11-10 11:08:40,842 - INFO -   - JPM: JPMorgan Chase & Co
+2025-11-10 11:08:40,843 - INFO -   - V: Visa Inc
+2025-11-10 11:08:40,843 - INFO -   - PG: Procter & Gamble Co
+2025-11-10 11:08:40,844 - INFO -   - XOM: Exxon Mobil Corporation
+2025-11-10 11:08:40,845 - INFO -   - HD: Home Depot Inc
+2025-11-10 11:08:40,845 - INFO -   - CVX: Chevron Corporation
+2025-11-10 11:08:40,845 - INFO -   - MA: Mastercard Inc
+2025-11-10 11:08:40,846 - INFO -   - BAC: Bank of America Corp
+2025-11-10 11:08:40,846 - INFO -   - ABBV: AbbVie Inc
+2025-11-10 11:08:40,846 - INFO -   - PFE: Pfizer Inc
+2025-11-10 11:08:40,846 - INFO -   - KO: The Coca-Cola Company
+2025-11-10 11:08:40,847 - INFO -   - AVGO: Broadcom Inc
+2025-11-10 11:08:40,854 - INFO -   - TMO: Thermo Fisher Scientific Inc
+2025-11-10 11:08:40,854 - INFO -   - COST: Costco Wholesale Corporation
+2025-11-10 11:08:40,854 - INFO -   - WMT: Walmart Inc
+2025-11-10 11:08:40,855 - INFO -   - LLY: Eli Lilly and Company
+2025-11-10 11:08:40,855 - INFO -   - NFLX: Netflix Inc
+2025-11-10 11:08:40,855 - INFO -   - ADBE: Adobe Inc
+2025-11-10 11:08:40,856 - INFO -   - CRM: Salesforce Inc
+2025-11-10 11:08:40,859 - INFO -   - ORCL: Oracle Corporation
+2025-11-10 11:08:40,860 - INFO -   - ACN: Accenture plc
+2025-11-10 11:08:40,860 - INFO - Update intervals: Stock data every 300s, News every 1800s
+2025-11-10 11:08:40,861 - INFO - Press Ctrl+C to stop tracking...
+
+2025-11-10 11:08:40,861 - INFO - === Cycle 1 started at 2025-11-10 11:08:40 ===
+2025-11-10 11:08:40,861 - INFO - Fetching data for AAPL (Apple Inc)
+2025-11-10 11:08:40,861 - INFO - Starting ETL process for AAPL
+2025-11-10 11:08:40,862 - INFO - Extracting stock data for AAPL
+2025-11-10 11:08:46,195 - ERROR - Failed to get ticker 'AAPL' reason: Failed to perform, curl: (35) Recv failure: Connection was reset. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2025-11-10 11:08:46,236 - ERROR - Error fetching data for AAPL: Failed to perform, curl: (35) Recv failure: Connection was reset. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2025-11-10 11:08:46,236 - WARNING - No data received for AAPL
+2025-11-10 11:08:46,237 - INFO - Extracting company info for AAPL
+2025-11-10 11:08:46,283 - ERROR - Error fetching company overview for AAPL: Failed to perform, curl: (35) Recv failure: Connection was reset. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2025-11-10 11:08:46,284 - WARNING - No company info received for AAPL
+2025-11-10 11:08:46,284 - INFO - Completed ETL process for AAPL - Success: False
+2025-11-10 11:08:46,284 - WARNING - Failed to store data for AAPL in database
+2025-11-10 11:08:58,285 - INFO - Fetching data for MSFT (Microsoft Corporation)
+2025-11-10 11:08:58,288 - INFO - Starting ETL process for MSFT
+2025-11-10 11:08:58,290 - INFO - Extracting stock data for MSFT
+2025-11-10 11:08:58,340 - ERROR - Failed to get ticker 'MSFT' reason: Failed to perform, curl: (35) Recv failure: Connection was reset. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2025-11-10 11:08:58,393 - ERROR - Error fetching data for MSFT: Failed to perform, curl: (35) Recv failure: Connection was reset. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2025-11-10 11:08:58,394 - WARNING - No data received for MSFT
+2025-11-10 11:08:58,394 - INFO - Extracting company info for MSFT
+2025-11-10 11:08:58,436 - ERROR - Error fetching company overview for MSFT: Failed to perform, curl: (35) Recv failure: Connection was reset. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2025-11-10 11:08:58,437 - WARNING - No company info received for MSFT
+2025-11-10 11:08:58,438 - INFO - Completed ETL process for MSFT - Success: False
+2025-11-10 11:08:58,438 - WARNING - Failed to store data for MSFT in database
+2025-11-10 11:09:10,441 - INFO - Fetching data for GOOGL (Alphabet Inc)
+2025-11-10 11:09:10,442 - INFO - Starting ETL process for GOOGL
+2025-11-10 11:09:10,443 - INFO - Extracting stock data for GOOGL
+2025-11-10 11:09:10,492 - ERROR - Failed to get ticker 'GOOGL' reason: Failed to perform, curl: (35) Recv failure: Connection was reset. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2025-11-10 11:09:10,556 - ERROR - $GOOGL: possibly delisted; no price data found  (period=5d)
+2025-11-10 11:09:10,566 - WARNING - No data received for GOOGL
+2025-11-10 11:09:10,567 - WARNING - No data received for GOOGL
+2025-11-10 11:09:10,568 - INFO - Extracting company info for GOOGL
+2025-11-10 11:09:10,611 - ERROR - Error fetching company overview for GOOGL: Failed to perform, curl: (35) Recv failure: Connection was reset. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2025-11-10 11:09:10,611 - WARNING - No company info received for GOOGL
+2025-11-10 11:09:10,611 - INFO - Completed ETL process for GOOGL - Success: False
+2025-11-10 11:09:10,612 - WARNING - Failed to store data for GOOGL in database
+2025-11-10 11:09:22,612 - INFO - Fetching data for AMZN (Amazon.com Inc)
+2025-11-10 11:09:22,613 - INFO - Starting ETL process for AMZN
+2025-11-10 11:09:22,614 - INFO - Extracting stock data for AMZN
+2025-11-10 11:09:22,694 - ERROR - Failed to get ticker 'AMZN' reason: Failed to perform, curl: (35) Recv failure: Connection was reset. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2025-11-10 11:09:22,738 - ERROR - $AMZN: possibly delisted; no price data found  (period=5d)
+2025-11-10 11:09:22,740 - WARNING - No data received for AMZN
+2025-11-10 11:09:22,741 - WARNING - No data received for AMZN
+2025-11-10 11:09:22,742 - INFO - Extracting company info for AMZN
+2025-11-10 11:09:22,835 - ERROR - Error fetching company overview for AMZN: Failed to perform, curl: (35) Recv failure: Connection was reset. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2025-11-10 11:09:22,836 - WARNING - No company info received for AMZN
+2025-11-10 11:09:22,836 - INFO - Completed ETL process for AMZN - Success: False
+2025-11-10 11:09:22,836 - WARNING - Failed to store data for AMZN in database
+2025-11-10 11:09:34,837 - INFO - Fetching data for NVDA (NVIDIA Corporation)
+2025-11-10 11:09:34,838 - INFO - Starting ETL process for NVDA
+2025-11-10 11:09:34,838 - INFO - Extracting stock data for NVDA
+2025-11-10 11:09:34,909 - ERROR - Failed to get ticker 'NVDA' reason: Failed to perform, curl: (35) Recv failure: Connection was reset. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2025-11-10 11:09:34,968 - ERROR - $NVDA: possibly delisted; no price data found  (period=5d)
+2025-11-10 11:09:34,969 - WARNING - No data received for NVDA
+2025-11-10 11:09:34,969 - WARNING - No data received for NVDA
+2025-11-10 11:09:34,970 - INFO - Extracting company info for NVDA
+2025-11-10 11:09:35,060 - ERROR - Error fetching company overview for NVDA: Failed to perform, curl: (35) Recv failure: Connection was reset. See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2025-11-10 11:09:35,061 - WARNING - No company info received for NVDA
+2025-11-10 11:09:35,061 - INFO - Completed ETL process for NVDA - Success: False
+2025-11-10 11:09:35,061 - WARNING - Failed to store data for NVDA in database
+2025-11-10 11:09:47,062 - INFO - Fetching data for TSLA (Tesla Inc)
+2025-11-10 11:09:47,063 - INFO - Starting ETL process for TSLA
+2025-11-10 11:09:47,063 - INFO - Extracting stock data for TSLA
+2025-11-10 11:09:54,278 - INFO - Extracted 5 records for TSLA
+2025-11-10 11:09:54,281 - INFO - Transformed 5 stock records for TSLA
+2025-11-10 11:09:54,325 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:09:54,326 - INFO - Successfully loaded stock data for TSLA
+2025-11-10 11:09:54,326 - INFO - Extracting company info for TSLA
+2025-11-10 11:09:54,670 - INFO - Successfully extracted company info for TSLA
+2025-11-10 11:09:54,684 - INFO - Updated company info for TSLA
+2025-11-10 11:09:54,684 - INFO - Completed ETL process for TSLA - Success: True
+2025-11-10 11:09:56,443 - INFO -   Latest Close: $429.52, Volume: 103,471,495.0
+2025-11-10 11:09:57,794 - INFO -   Company: Tesla Inc, Sector: CONSUMER CYCLICAL
+2025-11-10 11:10:09,796 - INFO - Fetching data for META (Meta Platforms Inc)
+2025-11-10 11:10:09,799 - INFO - Starting ETL process for META
+2025-11-10 11:10:09,800 - INFO - Extracting stock data for META
+2025-11-10 11:10:10,069 - INFO - Extracted 5 records for META
+2025-11-10 11:10:10,071 - INFO - Transformed 5 stock records for META
+2025-11-10 11:10:10,098 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:10:10,100 - INFO - Successfully loaded stock data for META
+2025-11-10 11:10:10,101 - INFO - Extracting company info for META
+2025-11-10 11:10:10,457 - INFO - Successfully extracted company info for META
+2025-11-10 11:10:10,461 - INFO - Updated company info for META
+2025-11-10 11:10:10,461 - INFO - Completed ETL process for META - Success: True
+2025-11-10 11:10:12,097 - INFO -   Latest Close: $621.71, Volume: 29,946,826.0
+2025-11-10 11:10:12,820 - INFO -   Company: Meta Platforms Inc., Sector: COMMUNICATION SERVICES
+2025-11-10 11:10:24,821 - INFO - Fetching data for BRK.B (Berkshire Hathaway Inc)
+2025-11-10 11:10:24,824 - INFO - Starting ETL process for BRK.B
+2025-11-10 11:10:24,825 - INFO - Extracting stock data for BRK.B
+2025-11-10 11:10:26,867 - ERROR - $BRK.B: possibly delisted; no price data found  (period=5d) (Yahoo error = "No data found, symbol may be delisted")
+2025-11-10 11:10:26,869 - WARNING - No data received for BRK.B
+2025-11-10 11:10:26,870 - WARNING - No data received for BRK.B
+2025-11-10 11:10:26,871 - INFO - Extracting company info for BRK.B
+2025-11-10 11:10:27,233 - INFO - Successfully extracted company info for BRK.B
+2025-11-10 11:10:27,237 - WARNING - Stock BRK.B not found for company info update
+2025-11-10 11:10:27,238 - INFO - Completed ETL process for BRK.B - Success: False
+2025-11-10 11:10:27,239 - WARNING - Failed to store data for BRK.B in database
+2025-11-10 11:10:39,241 - INFO - Fetching data for UNH (UnitedHealth Group Inc)
+2025-11-10 11:10:39,242 - INFO - Starting ETL process for UNH
+2025-11-10 11:10:39,243 - INFO - Extracting stock data for UNH
+2025-11-10 11:10:39,556 - INFO - Extracted 5 records for UNH
+2025-11-10 11:10:39,559 - INFO - Transformed 5 stock records for UNH
+2025-11-10 11:10:39,586 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:10:39,587 - INFO - Successfully loaded stock data for UNH
+2025-11-10 11:10:39,588 - INFO - Extracting company info for UNH
+2025-11-10 11:10:39,950 - INFO - Successfully extracted company info for UNH
+2025-11-10 11:10:39,974 - INFO - Updated company info for UNH
+2025-11-10 11:10:39,975 - INFO - Completed ETL process for UNH - Success: True
+2025-11-10 11:10:40,969 - INFO -   Latest Close: $324.21, Volume: 9,402,873.0
+2025-11-10 11:10:41,874 - INFO -   Company: UnitedHealth Group Incorporated, Sector: HEALTHCARE
+2025-11-10 11:10:53,876 - INFO - Fetching data for JNJ (Johnson & Johnson)
+2025-11-10 11:10:53,877 - INFO - Starting ETL process for JNJ
+2025-11-10 11:10:53,879 - INFO - Extracting stock data for JNJ
+2025-11-10 11:10:54,380 - INFO - Extracted 5 records for JNJ
+2025-11-10 11:10:54,382 - INFO - Transformed 5 stock records for JNJ
+2025-11-10 11:10:54,397 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:10:54,398 - INFO - Successfully loaded stock data for JNJ
+2025-11-10 11:10:54,398 - INFO - Extracting company info for JNJ
+2025-11-10 11:10:54,851 - INFO - Successfully extracted company info for JNJ
+2025-11-10 11:10:54,860 - INFO - Updated company info for JNJ
+2025-11-10 11:10:54,861 - INFO - Completed ETL process for JNJ - Success: True
+2025-11-10 11:10:56,303 - INFO -   Latest Close: $186.57, Volume: 6,959,209.0
+2025-11-10 11:10:57,242 - INFO -   Company: Johnson & Johnson, Sector: HEALTHCARE
+2025-11-10 11:11:09,244 - INFO - Fetching data for JPM (JPMorgan Chase & Co)
+2025-11-10 11:11:09,245 - INFO - Starting ETL process for JPM
+2025-11-10 11:11:09,246 - INFO - Extracting stock data for JPM
+2025-11-10 11:11:09,618 - INFO - Extracted 5 records for JPM
+2025-11-10 11:11:09,620 - INFO - Transformed 5 stock records for JPM
+2025-11-10 11:11:09,645 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:11:09,646 - INFO - Successfully loaded stock data for JPM
+2025-11-10 11:11:09,647 - INFO - Extracting company info for JPM
+2025-11-10 11:11:10,002 - INFO - Successfully extracted company info for JPM
+2025-11-10 11:11:10,024 - INFO - Updated company info for JPM
+2025-11-10 11:11:10,025 - INFO - Completed ETL process for JPM - Success: True
+2025-11-10 11:11:11,378 - INFO -   Latest Close: $314.21, Volume: 7,302,347.0
+2025-11-10 11:11:12,602 - INFO -   Company: JPMorgan Chase & Co, Sector: FINANCIAL SERVICES
+2025-11-10 11:11:24,606 - INFO - Fetching data for V (Visa Inc)
+2025-11-10 11:11:24,609 - INFO - Starting ETL process for V
+2025-11-10 11:11:24,609 - INFO - Extracting stock data for V
+2025-11-10 11:11:24,875 - INFO - Extracted 5 records for V
+2025-11-10 11:11:24,877 - INFO - Transformed 5 stock records for V
+2025-11-10 11:11:24,902 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:11:24,903 - INFO - Successfully loaded stock data for V
+2025-11-10 11:11:24,903 - INFO - Extracting company info for V
+2025-11-10 11:11:25,272 - INFO - Successfully extracted company info for V
+2025-11-10 11:11:25,297 - INFO - Updated company info for V
+2025-11-10 11:11:25,298 - INFO - Completed ETL process for V - Success: True
+2025-11-10 11:11:26,744 - INFO -   Latest Close: $336.02, Volume: 5,318,383.0
+2025-11-10 11:11:27,498 - INFO -   Company: Visa Inc. Class A, Sector: FINANCIAL SERVICES
+2025-11-10 11:11:39,500 - INFO - Fetching data for PG (Procter & Gamble Co)
+2025-11-10 11:11:39,501 - INFO - Starting ETL process for PG
+2025-11-10 11:11:39,502 - INFO - Extracting stock data for PG
+2025-11-10 11:11:40,170 - INFO - Extracted 5 records for PG
+2025-11-10 11:11:40,173 - INFO - Transformed 5 stock records for PG
+2025-11-10 11:11:40,210 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:11:40,210 - INFO - Successfully loaded stock data for PG
+2025-11-10 11:11:40,210 - INFO - Extracting company info for PG
+2025-11-10 11:11:40,561 - INFO - Successfully extracted company info for PG
+2025-11-10 11:11:40,583 - INFO - Updated company info for PG
+2025-11-10 11:11:40,583 - INFO - Completed ETL process for PG - Success: True
+2025-11-10 11:11:41,593 - INFO -   Latest Close: $146.98, Volume: 8,500,097.0
+2025-11-10 11:11:42,437 - INFO -   Company: Procter & Gamble Company, Sector: CONSUMER DEFENSIVE
+2025-11-10 11:11:54,439 - INFO - Fetching data for XOM (Exxon Mobil Corporation)
+2025-11-10 11:11:54,440 - INFO - Starting ETL process for XOM
+2025-11-10 11:11:54,440 - INFO - Extracting stock data for XOM
+2025-11-10 11:11:54,936 - INFO - Extracted 5 records for XOM
+2025-11-10 11:11:54,937 - INFO - Transformed 5 stock records for XOM
+2025-11-10 11:11:54,972 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:11:54,973 - INFO - Successfully loaded stock data for XOM
+2025-11-10 11:11:54,973 - INFO - Extracting company info for XOM
+2025-11-10 11:11:55,448 - INFO - Successfully extracted company info for XOM
+2025-11-10 11:11:55,471 - INFO - Updated company info for XOM
+2025-11-10 11:11:55,473 - INFO - Completed ETL process for XOM - Success: True
+2025-11-10 11:11:56,433 - INFO -   Latest Close: $117.22, Volume: 17,181,149.0
+2025-11-10 11:11:57,946 - INFO -   Company: Exxon Mobil Corp, Sector: ENERGY
+2025-11-10 11:12:09,948 - INFO - Fetching data for HD (Home Depot Inc)
+2025-11-10 11:12:09,951 - INFO - Starting ETL process for HD
+2025-11-10 11:12:09,952 - INFO - Extracting stock data for HD
+2025-11-10 11:12:10,380 - INFO - Extracted 5 records for HD
+2025-11-10 11:12:10,384 - INFO - Transformed 5 stock records for HD
+2025-11-10 11:12:10,426 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:12:10,426 - INFO - Successfully loaded stock data for HD
+2025-11-10 11:12:10,427 - INFO - Extracting company info for HD
+2025-11-10 11:12:10,876 - INFO - Successfully extracted company info for HD
+2025-11-10 11:12:10,885 - INFO - Updated company info for HD
+2025-11-10 11:12:10,885 - INFO - Completed ETL process for HD - Success: True
+2025-11-10 11:12:12,407 - INFO -   Latest Close: $371.11, Volume: 2,766,351.0
+2025-11-10 11:12:13,222 - INFO -   Company: The Home Depot Inc, Sector: CONSUMER CYCLICAL
+2025-11-10 11:12:25,225 - INFO - Fetching data for CVX (Chevron Corporation)
+2025-11-10 11:12:25,226 - INFO - Starting ETL process for CVX
+2025-11-10 11:12:25,226 - INFO - Extracting stock data for CVX
+2025-11-10 11:12:25,845 - INFO - Extracted 5 records for CVX
+2025-11-10 11:12:25,849 - INFO - Transformed 5 stock records for CVX
+2025-11-10 11:12:25,882 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:12:25,883 - INFO - Successfully loaded stock data for CVX
+2025-11-10 11:12:25,883 - INFO - Extracting company info for CVX
+2025-11-10 11:12:26,428 - INFO - Successfully extracted company info for CVX
+2025-11-10 11:12:26,450 - INFO - Updated company info for CVX
+2025-11-10 11:12:26,451 - INFO - Completed ETL process for CVX - Success: True
+2025-11-10 11:12:27,493 - INFO -   Latest Close: $155.02, Volume: 9,835,929.0
+2025-11-10 11:12:28,275 - INFO -   Company: Chevron Corp, Sector: ENERGY
+2025-11-10 11:12:40,276 - INFO - Fetching data for MA (Mastercard Inc)
+2025-11-10 11:12:40,277 - INFO - Starting ETL process for MA
+2025-11-10 11:12:40,277 - INFO - Extracting stock data for MA
+2025-11-10 11:12:40,573 - INFO - Extracted 5 records for MA
+2025-11-10 11:12:40,575 - INFO - Transformed 5 stock records for MA
+2025-11-10 11:12:40,606 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:12:40,607 - INFO - Successfully loaded stock data for MA
+2025-11-10 11:12:40,607 - INFO - Extracting company info for MA
+2025-11-10 11:12:41,119 - INFO - Successfully extracted company info for MA
+2025-11-10 11:12:41,124 - INFO - Updated company info for MA
+2025-11-10 11:12:41,125 - INFO - Completed ETL process for MA - Success: True
+2025-11-10 11:12:42,284 - INFO -   Latest Close: $551.97, Volume: 2,510,503.0
+2025-11-10 11:12:43,035 - INFO -   Company: Mastercard Inc, Sector: FINANCIAL SERVICES
+2025-11-10 11:12:55,037 - INFO - Fetching data for BAC (Bank of America Corp)
+2025-11-10 11:12:55,040 - INFO - Starting ETL process for BAC
+2025-11-10 11:12:55,040 - INFO - Extracting stock data for BAC
+2025-11-10 11:12:55,532 - INFO - Extracted 5 records for BAC
+2025-11-10 11:12:55,534 - INFO - Transformed 5 stock records for BAC
+2025-11-10 11:12:55,586 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:12:55,587 - INFO - Successfully loaded stock data for BAC
+2025-11-10 11:12:55,588 - INFO - Extracting company info for BAC
+2025-11-10 11:12:56,083 - INFO - Successfully extracted company info for BAC
+2025-11-10 11:12:56,089 - INFO - Updated company info for BAC
+2025-11-10 11:12:56,090 - INFO - Completed ETL process for BAC - Success: True
+2025-11-10 11:12:57,167 - INFO -   Latest Close: $53.2, Volume: 40,537,658.0
+2025-11-10 11:12:57,868 - INFO -   Company: Bank of America Corp, Sector: FINANCIAL SERVICES
+2025-11-10 11:13:19,812 - INFO - ============================================================
+2025-11-10 11:13:19,813 - INFO - STARTING CONTINUOUS STOCK TRACKING FOR TOP 20 COMPANIES
+2025-11-10 11:13:19,813 - INFO - ============================================================
+2025-11-10 11:13:19,973 - INFO - Loaded 12 tracked symbols from the database.
+2025-11-10 11:13:19,974 - INFO - ETL Pipeline initialized
+2025-11-10 11:13:19,978 - INFO - Tracking 31 companies:
+2025-11-10 11:13:19,979 - INFO -   - AAPL: Apple Inc
+2025-11-10 11:13:19,979 - INFO -   - MSFT: Microsoft Corporation
+2025-11-10 11:13:19,980 - INFO -   - GOOGL: Alphabet Inc
+2025-11-10 11:13:19,981 - INFO -   - AMZN: Amazon.com Inc
+2025-11-10 11:13:19,983 - INFO -   - NVDA: NVIDIA Corporation
+2025-11-10 11:13:19,984 - INFO -   - TSLA: Tesla Inc
+2025-11-10 11:13:19,985 - INFO -   - META: Meta Platforms Inc
+2025-11-10 11:13:19,986 - INFO -   - BRK.B: Berkshire Hathaway Inc
+2025-11-10 11:13:19,988 - INFO -   - UNH: UnitedHealth Group Inc
+2025-11-10 11:13:19,988 - INFO -   - JNJ: Johnson & Johnson
+2025-11-10 11:13:19,989 - INFO -   - JPM: JPMorgan Chase & Co
+2025-11-10 11:13:19,989 - INFO -   - V: Visa Inc
+2025-11-10 11:13:19,993 - INFO -   - PG: Procter & Gamble Co
+2025-11-10 11:13:19,994 - INFO -   - XOM: Exxon Mobil Corporation
+2025-11-10 11:13:19,994 - INFO -   - HD: Home Depot Inc
+2025-11-10 11:13:19,997 - INFO -   - CVX: Chevron Corporation
+2025-11-10 11:13:19,998 - INFO -   - MA: Mastercard Inc
+2025-11-10 11:13:19,998 - INFO -   - BAC: Bank of America Corp
+2025-11-10 11:13:19,999 - INFO -   - ABBV: AbbVie Inc
+2025-11-10 11:13:19,999 - INFO -   - PFE: Pfizer Inc
+2025-11-10 11:13:19,999 - INFO -   - KO: The Coca-Cola Company
+2025-11-10 11:13:19,999 - INFO -   - AVGO: Broadcom Inc
+2025-11-10 11:13:20,001 - INFO -   - TMO: Thermo Fisher Scientific Inc
+2025-11-10 11:13:20,001 - INFO -   - COST: Costco Wholesale Corporation
+2025-11-10 11:13:20,001 - INFO -   - WMT: Walmart Inc
+2025-11-10 11:13:20,001 - INFO -   - LLY: Eli Lilly and Company
+2025-11-10 11:13:20,002 - INFO -   - NFLX: Netflix Inc
+2025-11-10 11:13:20,002 - INFO -   - ADBE: Adobe Inc
+2025-11-10 11:13:20,002 - INFO -   - CRM: Salesforce Inc
+2025-11-10 11:13:20,002 - INFO -   - ORCL: Oracle Corporation
+2025-11-10 11:13:20,002 - INFO -   - ACN: Accenture plc
+2025-11-10 11:13:20,003 - INFO - Update intervals: Stock data every 300s, News every 1800s
+2025-11-10 11:13:20,004 - INFO - Press Ctrl+C to stop tracking...
+
+2025-11-10 11:13:20,004 - INFO - === Cycle 1 started at 2025-11-10 11:13:20 ===
+2025-11-10 11:13:20,005 - INFO - Fetching data for AAPL (Apple Inc)
+2025-11-10 11:13:20,006 - INFO - Starting ETL process for AAPL (attempt 1/3)
+2025-11-10 11:13:20,006 - INFO - Starting ETL process for AAPL
+2025-11-10 11:13:20,006 - INFO - Extracting stock data for AAPL
+2025-11-10 11:13:21,574 - INFO - Extracted 5 records for AAPL
+2025-11-10 11:13:21,577 - INFO - Transformed 5 stock records for AAPL
+2025-11-10 11:13:21,642 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:13:21,643 - INFO - Successfully loaded stock data for AAPL
+2025-11-10 11:13:21,644 - INFO - Extracting company info for AAPL
+2025-11-10 11:13:22,196 - INFO - Successfully extracted company info for AAPL
+2025-11-10 11:13:22,224 - INFO - Updated company info for AAPL
+2025-11-10 11:13:22,225 - INFO - Completed ETL process for AAPL - Success: True
+2025-11-10 11:13:23,598 - INFO -   Latest Close: $268.47, Volume: 48,227,365.0
+2025-11-10 11:13:25,107 - INFO -   Company: Apple Inc, Sector: TECHNOLOGY
+2025-11-10 11:13:40,109 - INFO - Fetching data for MSFT (Microsoft Corporation)
+2025-11-10 11:13:40,110 - INFO - Starting ETL process for MSFT (attempt 1/3)
+2025-11-10 11:13:40,111 - INFO - Starting ETL process for MSFT
+2025-11-10 11:13:40,112 - INFO - Extracting stock data for MSFT
+2025-11-10 11:13:40,943 - INFO - Extracted 5 records for MSFT
+2025-11-10 11:13:40,945 - INFO - Transformed 5 stock records for MSFT
+2025-11-10 11:13:40,972 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:13:40,972 - INFO - Successfully loaded stock data for MSFT
+2025-11-10 11:13:40,972 - INFO - Extracting company info for MSFT
+2025-11-10 11:13:41,336 - INFO - Successfully extracted company info for MSFT
+2025-11-10 11:13:41,359 - INFO - Updated company info for MSFT
+2025-11-10 11:13:41,365 - INFO - Completed ETL process for MSFT - Success: True
+2025-11-10 11:13:42,935 - INFO -   Latest Close: $496.82, Volume: 24,019,764.0
+2025-11-10 11:13:44,258 - INFO -   Company: Microsoft Corporation, Sector: TECHNOLOGY
+2025-11-10 11:13:59,259 - INFO - Fetching data for GOOGL (Alphabet Inc)
+2025-11-10 11:13:59,262 - INFO - Starting ETL process for GOOGL (attempt 1/3)
+2025-11-10 11:13:59,263 - INFO - Starting ETL process for GOOGL
+2025-11-10 11:13:59,264 - INFO - Extracting stock data for GOOGL
+2025-11-10 11:13:59,559 - INFO - Extracted 5 records for GOOGL
+2025-11-10 11:13:59,561 - INFO - Transformed 5 stock records for GOOGL
+2025-11-10 11:13:59,588 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:13:59,592 - INFO - Successfully loaded stock data for GOOGL
+2025-11-10 11:13:59,592 - INFO - Extracting company info for GOOGL
+2025-11-10 11:14:00,023 - INFO - Successfully extracted company info for GOOGL
+2025-11-10 11:14:00,030 - INFO - Updated company info for GOOGL
+2025-11-10 11:14:00,032 - INFO - Completed ETL process for GOOGL - Success: True
+2025-11-10 11:14:01,444 - INFO -   Latest Close: $278.83, Volume: 34,479,588.0
+2025-11-10 11:14:02,175 - INFO -   Company: Alphabet Inc Class A, Sector: COMMUNICATION SERVICES
+2025-11-10 11:14:17,177 - INFO - Fetching data for AMZN (Amazon.com Inc)
+2025-11-10 11:14:17,181 - INFO - Starting ETL process for AMZN (attempt 1/3)
+2025-11-10 11:14:17,182 - INFO - Starting ETL process for AMZN
+2025-11-10 11:14:17,182 - INFO - Extracting stock data for AMZN
+2025-11-10 11:14:17,460 - INFO - Extracted 5 records for AMZN
+2025-11-10 11:14:17,464 - INFO - Transformed 5 stock records for AMZN
+2025-11-10 11:14:17,492 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:14:17,493 - INFO - Successfully loaded stock data for AMZN
+2025-11-10 11:14:17,493 - INFO - Extracting company info for AMZN
+2025-11-10 11:14:17,853 - INFO - Successfully extracted company info for AMZN
+2025-11-10 11:14:17,877 - INFO - Updated company info for AMZN
+2025-11-10 11:14:17,879 - INFO - Completed ETL process for AMZN - Success: True
+2025-11-10 11:14:19,394 - INFO -   Latest Close: $244.41, Volume: 46,374,294.0
+2025-11-10 11:14:20,300 - INFO -   Company: Amazon.com Inc, Sector: CONSUMER CYCLICAL
+2025-11-10 11:14:35,301 - INFO - Fetching data for NVDA (NVIDIA Corporation)
+2025-11-10 11:14:35,306 - INFO - Starting ETL process for NVDA (attempt 1/3)
+2025-11-10 11:14:35,306 - INFO - Starting ETL process for NVDA
+2025-11-10 11:14:35,307 - INFO - Extracting stock data for NVDA
+2025-11-10 11:14:35,612 - INFO - Extracted 5 records for NVDA
+2025-11-10 11:14:35,614 - INFO - Transformed 5 stock records for NVDA
+2025-11-10 11:14:35,640 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:14:35,641 - INFO - Successfully loaded stock data for NVDA
+2025-11-10 11:14:35,641 - INFO - Extracting company info for NVDA
+2025-11-10 11:14:36,036 - INFO - Successfully extracted company info for NVDA
+2025-11-10 11:14:36,061 - INFO - Updated company info for NVDA
+2025-11-10 11:14:36,063 - INFO - Completed ETL process for NVDA - Success: True
+2025-11-10 11:14:37,001 - INFO -   Latest Close: $188.15, Volume: 264,942,255.0
+2025-11-10 11:14:37,811 - INFO -   Company: NVIDIA Corporation, Sector: TECHNOLOGY
+2025-11-10 11:14:52,814 - INFO - Fetching data for TSLA (Tesla Inc)
+2025-11-10 11:14:52,814 - INFO - Starting ETL process for TSLA (attempt 1/3)
+2025-11-10 11:14:52,815 - INFO - Starting ETL process for TSLA
+2025-11-10 11:14:52,815 - INFO - Extracting stock data for TSLA
+2025-11-10 11:14:52,964 - INFO - Extracted 5 records for TSLA
+2025-11-10 11:14:52,966 - INFO - Transformed 5 stock records for TSLA
+2025-11-10 11:14:52,987 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:14:52,992 - INFO - Successfully loaded stock data for TSLA
+2025-11-10 11:14:53,007 - INFO - Extracting company info for TSLA
+2025-11-10 11:14:53,394 - INFO - Successfully extracted company info for TSLA
+2025-11-10 11:14:53,401 - INFO - Updated company info for TSLA
+2025-11-10 11:14:53,406 - INFO - Completed ETL process for TSLA - Success: True
+2025-11-10 11:14:54,601 - INFO -   Latest Close: $429.52, Volume: 103,471,495.0
+2025-11-10 11:14:55,974 - INFO -   Company: Tesla Inc, Sector: CONSUMER CYCLICAL
+2025-11-10 11:15:10,976 - INFO - Fetching data for META (Meta Platforms Inc)
+2025-11-10 11:15:10,981 - INFO - Starting ETL process for META (attempt 1/3)
+2025-11-10 11:15:10,982 - INFO - Starting ETL process for META
+2025-11-10 11:15:10,982 - INFO - Extracting stock data for META
+2025-11-10 11:15:11,137 - INFO - Extracted 5 records for META
+2025-11-10 11:15:11,139 - INFO - Transformed 5 stock records for META
+2025-11-10 11:15:11,159 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:15:11,162 - INFO - Successfully loaded stock data for META
+2025-11-10 11:15:11,162 - INFO - Extracting company info for META
+2025-11-10 11:15:11,581 - INFO - Successfully extracted company info for META
+2025-11-10 11:15:11,586 - INFO - Updated company info for META
+2025-11-10 11:15:11,587 - INFO - Completed ETL process for META - Success: True
+2025-11-10 11:15:12,636 - INFO -   Latest Close: $621.71, Volume: 29,946,826.0
+2025-11-10 11:15:13,754 - INFO -   Company: Meta Platforms Inc., Sector: COMMUNICATION SERVICES
+2025-11-10 11:15:28,756 - INFO - Fetching data for BRK.B (Berkshire Hathaway Inc)
+2025-11-10 11:15:28,756 - INFO - Starting ETL process for BRK.B (attempt 1/3)
+2025-11-10 11:15:28,758 - INFO - Starting ETL process for BRK.B
+2025-11-10 11:15:28,758 - INFO - Extracting stock data for BRK.B
+2025-11-10 11:15:30,754 - ERROR - $BRK.B: possibly delisted; no price data found  (period=5d) (Yahoo error = "No data found, symbol may be delisted")
+2025-11-10 11:15:30,755 - WARNING - No data received for BRK.B
+2025-11-10 11:15:30,756 - WARNING - No data received for BRK.B
+2025-11-10 11:15:30,757 - INFO - Extracting company info for BRK.B
+2025-11-10 11:15:30,875 - INFO - Successfully extracted company info for BRK.B
+2025-11-10 11:15:30,880 - WARNING - Stock BRK.B not found for company info update
+2025-11-10 11:15:30,883 - INFO - Completed ETL process for BRK.B - Success: False
+2025-11-10 11:15:30,884 - WARNING - ETL reported failure for BRK.B on attempt 1
+2025-11-10 11:15:30,887 - INFO - Retrying BRK.B after 2s backoff...
+2025-11-10 11:15:32,889 - INFO - Starting ETL process for BRK.B (attempt 2/3)
+2025-11-10 11:15:32,891 - INFO - Starting ETL process for BRK.B
+2025-11-10 11:15:32,892 - INFO - Extracting stock data for BRK.B
+2025-11-10 11:15:33,961 - ERROR - $BRK.B: possibly delisted; no price data found  (period=5d) (Yahoo error = "No data found, symbol may be delisted")
+2025-11-10 11:15:33,964 - WARNING - No data received for BRK.B
+2025-11-10 11:15:33,965 - WARNING - No data received for BRK.B
+2025-11-10 11:15:33,965 - INFO - Extracting company info for BRK.B
+2025-11-10 11:15:34,203 - INFO - Successfully extracted company info for BRK.B
+2025-11-10 11:15:34,207 - WARNING - Stock BRK.B not found for company info update
+2025-11-10 11:15:34,208 - INFO - Completed ETL process for BRK.B - Success: False
+2025-11-10 11:15:34,209 - WARNING - ETL reported failure for BRK.B on attempt 2
+2025-11-10 11:15:34,212 - INFO - Retrying BRK.B after 4s backoff...
+2025-11-10 11:15:38,216 - INFO - Starting ETL process for BRK.B (attempt 3/3)
+2025-11-10 11:15:38,217 - INFO - Starting ETL process for BRK.B
+2025-11-10 11:15:38,221 - INFO - Extracting stock data for BRK.B
+2025-11-10 11:15:38,802 - ERROR - $BRK.B: possibly delisted; no price data found  (period=5d) (Yahoo error = "No data found, symbol may be delisted")
+2025-11-10 11:15:38,804 - WARNING - No data received for BRK.B
+2025-11-10 11:15:38,805 - WARNING - No data received for BRK.B
+2025-11-10 11:15:38,805 - INFO - Extracting company info for BRK.B
+2025-11-10 11:15:39,050 - INFO - Successfully extracted company info for BRK.B
+2025-11-10 11:15:39,057 - WARNING - Stock BRK.B not found for company info update
+2025-11-10 11:15:39,063 - INFO - Completed ETL process for BRK.B - Success: False
+2025-11-10 11:15:39,064 - WARNING - ETL reported failure for BRK.B on attempt 3
+2025-11-10 11:15:39,064 - WARNING - Failed to store data for BRK.B in database after 3 attempts
+2025-11-10 11:15:54,065 - INFO - Fetching data for UNH (UnitedHealth Group Inc)
+2025-11-10 11:15:54,066 - INFO - Starting ETL process for UNH (attempt 1/3)
+2025-11-10 11:15:54,067 - INFO - Starting ETL process for UNH
+2025-11-10 11:15:54,068 - INFO - Extracting stock data for UNH
+2025-11-10 11:15:54,325 - INFO - Extracted 5 records for UNH
+2025-11-10 11:15:54,328 - INFO - Transformed 5 stock records for UNH
+2025-11-10 11:15:54,346 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:15:54,346 - INFO - Successfully loaded stock data for UNH
+2025-11-10 11:15:54,347 - INFO - Extracting company info for UNH
+2025-11-10 11:15:54,751 - INFO - Successfully extracted company info for UNH
+2025-11-10 11:15:54,757 - INFO - Updated company info for UNH
+2025-11-10 11:15:54,758 - INFO - Completed ETL process for UNH - Success: True
+2025-11-10 11:15:56,321 - INFO -   Latest Close: $324.21, Volume: 9,402,873.0
+2025-11-10 11:15:57,580 - INFO -   Company: UnitedHealth Group Incorporated, Sector: HEALTHCARE
+2025-11-10 11:16:12,582 - INFO - Fetching data for JNJ (Johnson & Johnson)
+2025-11-10 11:16:12,582 - INFO - Starting ETL process for JNJ (attempt 1/3)
+2025-11-10 11:16:12,583 - INFO - Starting ETL process for JNJ
+2025-11-10 11:16:12,583 - INFO - Extracting stock data for JNJ
+2025-11-10 11:16:12,931 - INFO - Extracted 5 records for JNJ
+2025-11-10 11:16:12,932 - INFO - Transformed 5 stock records for JNJ
+2025-11-10 11:16:12,948 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:16:12,957 - INFO - Successfully loaded stock data for JNJ
+2025-11-10 11:16:12,957 - INFO - Extracting company info for JNJ
+2025-11-10 11:16:13,448 - INFO - Successfully extracted company info for JNJ
+2025-11-10 11:16:13,454 - INFO - Updated company info for JNJ
+2025-11-10 11:16:13,454 - INFO - Completed ETL process for JNJ - Success: True
+2025-11-10 11:16:14,898 - INFO -   Latest Close: $186.57, Volume: 6,959,209.0
+2025-11-10 11:16:15,704 - INFO -   Company: Johnson & Johnson, Sector: HEALTHCARE
+2025-11-10 11:16:30,709 - INFO - Fetching data for JPM (JPMorgan Chase & Co)
+2025-11-10 11:16:30,712 - INFO - Starting ETL process for JPM (attempt 1/3)
+2025-11-10 11:16:30,715 - INFO - Starting ETL process for JPM
+2025-11-10 11:16:30,716 - INFO - Extracting stock data for JPM
+2025-11-10 11:16:30,979 - INFO - Extracted 5 records for JPM
+2025-11-10 11:16:30,982 - INFO - Transformed 5 stock records for JPM
+2025-11-10 11:16:31,000 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:16:31,001 - INFO - Successfully loaded stock data for JPM
+2025-11-10 11:16:31,001 - INFO - Extracting company info for JPM
+2025-11-10 11:16:31,431 - INFO - Successfully extracted company info for JPM
+2025-11-10 11:16:31,436 - INFO - Updated company info for JPM
+2025-11-10 11:16:31,437 - INFO - Completed ETL process for JPM - Success: True
+2025-11-10 11:16:32,457 - INFO -   Latest Close: $314.21, Volume: 7,302,347.0
+2025-11-10 11:16:33,625 - INFO -   Company: N/A, Sector: N/A
+2025-11-10 11:16:48,627 - INFO - Fetching data for V (Visa Inc)
+2025-11-10 11:16:48,628 - INFO - Starting ETL process for V (attempt 1/3)
+2025-11-10 11:16:48,629 - INFO - Starting ETL process for V
+2025-11-10 11:16:48,630 - INFO - Extracting stock data for V
+2025-11-10 11:16:48,796 - INFO - Extracted 5 records for V
+2025-11-10 11:16:48,798 - INFO - Transformed 5 stock records for V
+2025-11-10 11:16:48,815 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:16:48,815 - INFO - Successfully loaded stock data for V
+2025-11-10 11:16:48,816 - INFO - Extracting company info for V
+2025-11-10 11:16:49,229 - INFO - Successfully extracted company info for V
+2025-11-10 11:16:49,235 - INFO - Updated company info for V
+2025-11-10 11:16:49,237 - INFO - Completed ETL process for V - Success: True
+2025-11-10 11:16:51,034 - INFO -   Company: Visa Inc. Class A, Sector: FINANCIAL SERVICES
+2025-11-10 11:17:06,036 - INFO - Fetching data for PG (Procter & Gamble Co)
+2025-11-10 11:17:06,036 - INFO - Starting ETL process for PG (attempt 1/3)
+2025-11-10 11:17:06,037 - INFO - Starting ETL process for PG
+2025-11-10 11:17:06,038 - INFO - Extracting stock data for PG
+2025-11-10 11:17:06,286 - INFO - Extracted 5 records for PG
+2025-11-10 11:17:06,288 - INFO - Transformed 5 stock records for PG
+2025-11-10 11:17:06,305 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:17:06,306 - INFO - Successfully loaded stock data for PG
+2025-11-10 11:17:06,306 - INFO - Extracting company info for PG
+2025-11-10 11:17:06,706 - INFO - Successfully extracted company info for PG
+2025-11-10 11:17:06,711 - INFO - Updated company info for PG
+2025-11-10 11:17:06,712 - INFO - Completed ETL process for PG - Success: True
+2025-11-10 11:17:08,158 - INFO -   Latest Close: $146.98, Volume: 8,500,097.0
+2025-11-10 11:17:08,852 - INFO -   Company: N/A, Sector: N/A
+2025-11-10 11:17:23,854 - INFO - Fetching data for XOM (Exxon Mobil Corporation)
+2025-11-10 11:17:23,855 - INFO - Starting ETL process for XOM (attempt 1/3)
+2025-11-10 11:17:23,855 - INFO - Starting ETL process for XOM
+2025-11-10 11:17:23,856 - INFO - Extracting stock data for XOM
+2025-11-10 11:17:24,124 - INFO - Extracted 5 records for XOM
+2025-11-10 11:17:24,126 - INFO - Transformed 5 stock records for XOM
+2025-11-10 11:17:24,148 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:17:24,149 - INFO - Successfully loaded stock data for XOM
+2025-11-10 11:17:24,150 - INFO - Extracting company info for XOM
+2025-11-10 11:17:24,695 - INFO - Successfully extracted company info for XOM
+2025-11-10 11:17:24,703 - INFO - Updated company info for XOM
+2025-11-10 11:17:24,704 - INFO - Completed ETL process for XOM - Success: True
+2025-11-10 11:17:27,179 - INFO -   Company: N/A, Sector: N/A
+2025-11-10 11:17:42,181 - INFO - Fetching data for HD (Home Depot Inc)
+2025-11-10 11:17:42,182 - INFO - Starting ETL process for HD (attempt 1/3)
+2025-11-10 11:17:42,183 - INFO - Starting ETL process for HD
+2025-11-10 11:17:42,184 - INFO - Extracting stock data for HD
+2025-11-10 11:17:42,497 - INFO - Extracted 5 records for HD
+2025-11-10 11:17:42,498 - INFO - Transformed 5 stock records for HD
+2025-11-10 11:17:42,508 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:17:42,509 - INFO - Successfully loaded stock data for HD
+2025-11-10 11:17:42,509 - INFO - Extracting company info for HD
+2025-11-10 11:17:42,959 - INFO - Successfully extracted company info for HD
+2025-11-10 11:17:42,963 - INFO - Updated company info for HD
+2025-11-10 11:17:42,963 - INFO - Completed ETL process for HD - Success: True
+2025-11-10 11:17:44,697 - INFO -   Company: The Home Depot Inc, Sector: CONSUMER CYCLICAL
+2025-11-10 11:17:59,698 - INFO - Fetching data for CVX (Chevron Corporation)
+2025-11-10 11:17:59,700 - INFO - Starting ETL process for CVX (attempt 1/3)
+2025-11-10 11:17:59,701 - INFO - Starting ETL process for CVX
+2025-11-10 11:17:59,701 - INFO - Extracting stock data for CVX
+2025-11-10 11:17:59,884 - INFO - Extracted 5 records for CVX
+2025-11-10 11:17:59,884 - INFO - Transformed 5 stock records for CVX
+2025-11-10 11:17:59,895 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:17:59,895 - INFO - Successfully loaded stock data for CVX
+2025-11-10 11:17:59,896 - INFO - Extracting company info for CVX
+2025-11-10 11:18:00,301 - INFO - Successfully extracted company info for CVX
+2025-11-10 11:18:00,303 - INFO - Updated company info for CVX
+2025-11-10 11:18:00,303 - INFO - Completed ETL process for CVX - Success: True
+2025-11-10 11:18:01,255 - INFO -   Latest Close: $155.02, Volume: 9,835,929.0
+2025-11-10 11:18:01,780 - INFO -   Company: N/A, Sector: N/A
+2025-11-10 11:18:16,782 - INFO - Fetching data for MA (Mastercard Inc)
+2025-11-10 11:18:16,784 - INFO - Starting ETL process for MA (attempt 1/3)
+2025-11-10 11:18:16,785 - INFO - Starting ETL process for MA
+2025-11-10 11:18:16,785 - INFO - Extracting stock data for MA
+2025-11-10 11:18:17,070 - INFO - Extracted 5 records for MA
+2025-11-10 11:18:17,072 - INFO - Transformed 5 stock records for MA
+2025-11-10 11:18:17,081 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:18:17,082 - INFO - Successfully loaded stock data for MA
+2025-11-10 11:18:17,082 - INFO - Extracting company info for MA
+2025-11-10 11:18:17,538 - INFO - Successfully extracted company info for MA
+2025-11-10 11:18:17,544 - INFO - Updated company info for MA
+2025-11-10 11:18:17,546 - INFO - Completed ETL process for MA - Success: True
+2025-11-10 11:18:18,676 - INFO -   Company: Mastercard Inc, Sector: FINANCIAL SERVICES
+2025-11-10 11:18:33,677 - INFO - Fetching data for BAC (Bank of America Corp)
+2025-11-10 11:18:33,679 - INFO - Starting ETL process for BAC (attempt 1/3)
+2025-11-10 11:18:33,680 - INFO - Starting ETL process for BAC
+2025-11-10 11:18:33,681 - INFO - Extracting stock data for BAC
+2025-11-10 11:18:33,889 - INFO - Extracted 5 records for BAC
+2025-11-10 11:18:33,890 - INFO - Transformed 5 stock records for BAC
+2025-11-10 11:18:33,899 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:18:33,900 - INFO - Successfully loaded stock data for BAC
+2025-11-10 11:18:33,901 - INFO - Extracting company info for BAC
+2025-11-10 11:18:34,396 - INFO - Successfully extracted company info for BAC
+2025-11-10 11:18:34,400 - INFO - Updated company info for BAC
+2025-11-10 11:18:34,401 - INFO - Completed ETL process for BAC - Success: True
+2025-11-10 11:18:36,595 - INFO -   Company: Bank of America Corp, Sector: FINANCIAL SERVICES
+2025-11-10 11:18:51,596 - INFO - Fetching data for ABBV (AbbVie Inc)
+2025-11-10 11:18:51,596 - INFO - Starting ETL process for ABBV (attempt 1/3)
+2025-11-10 11:18:51,597 - INFO - Starting ETL process for ABBV
+2025-11-10 11:18:51,597 - INFO - Extracting stock data for ABBV
+2025-11-10 11:18:51,879 - INFO - Extracted 5 records for ABBV
+2025-11-10 11:18:51,880 - INFO - Transformed 5 stock records for ABBV
+2025-11-10 11:18:51,894 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:18:51,894 - INFO - Successfully loaded stock data for ABBV
+2025-11-10 11:18:51,894 - INFO - Extracting company info for ABBV
+2025-11-10 11:18:52,342 - INFO - Successfully extracted company info for ABBV
+2025-11-10 11:18:52,347 - INFO - Updated company info for ABBV
+2025-11-10 11:18:52,348 - INFO - Completed ETL process for ABBV - Success: True
+2025-11-10 11:18:53,931 - INFO -   Company: AbbVie Inc, Sector: HEALTHCARE
+2025-11-10 11:19:08,932 - INFO - Fetching data for PFE (Pfizer Inc)
+2025-11-10 11:19:08,933 - INFO - Starting ETL process for PFE (attempt 1/3)
+2025-11-10 11:19:08,933 - INFO - Starting ETL process for PFE
+2025-11-10 11:19:08,934 - INFO - Extracting stock data for PFE
+2025-11-10 11:19:09,499 - INFO - Extracted 5 records for PFE
+2025-11-10 11:19:09,500 - INFO - Transformed 5 stock records for PFE
+2025-11-10 11:19:09,511 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:19:09,512 - INFO - Successfully loaded stock data for PFE
+2025-11-10 11:19:09,512 - INFO - Extracting company info for PFE
+2025-11-10 11:19:09,900 - INFO - Successfully extracted company info for PFE
+2025-11-10 11:19:09,906 - INFO - Updated company info for PFE
+2025-11-10 11:19:09,906 - INFO - Completed ETL process for PFE - Success: True
+2025-11-10 11:19:11,358 - INFO -   Company: N/A, Sector: N/A
+2025-11-10 11:19:26,360 - INFO - Fetching data for KO (The Coca-Cola Company)
+2025-11-10 11:19:26,360 - INFO - Starting ETL process for KO (attempt 1/3)
+2025-11-10 11:19:26,360 - INFO - Starting ETL process for KO
+2025-11-10 11:19:26,361 - INFO - Extracting stock data for KO
+2025-11-10 11:19:26,911 - INFO - Extracted 5 records for KO
+2025-11-10 11:19:26,912 - INFO - Transformed 5 stock records for KO
+2025-11-10 11:19:26,921 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:19:26,921 - INFO - Successfully loaded stock data for KO
+2025-11-10 11:19:26,921 - INFO - Extracting company info for KO
+2025-11-10 11:19:27,345 - INFO - Successfully extracted company info for KO
+2025-11-10 11:19:27,347 - INFO - Updated company info for KO
+2025-11-10 11:19:27,348 - INFO - Completed ETL process for KO - Success: True
+2025-11-10 11:19:28,205 - INFO -   Latest Close: $70.55, Volume: 25,108,308.0
+2025-11-10 11:19:28,800 - INFO -   Company: The Coca-Cola Company, Sector: CONSUMER DEFENSIVE
+2025-11-10 11:19:43,802 - INFO - Fetching data for AVGO (Broadcom Inc)
+2025-11-10 11:19:43,802 - INFO - Starting ETL process for AVGO (attempt 1/3)
+2025-11-10 11:19:43,802 - INFO - Starting ETL process for AVGO
+2025-11-10 11:19:43,802 - INFO - Extracting stock data for AVGO
+2025-11-10 11:19:44,196 - INFO - Extracted 5 records for AVGO
+2025-11-10 11:19:44,197 - INFO - Transformed 5 stock records for AVGO
+2025-11-10 11:19:44,207 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:19:44,208 - INFO - Successfully loaded stock data for AVGO
+2025-11-10 11:19:44,208 - INFO - Extracting company info for AVGO
+2025-11-10 11:19:44,617 - INFO - Successfully extracted company info for AVGO
+2025-11-10 11:19:44,621 - INFO - Updated company info for AVGO
+2025-11-10 11:19:44,621 - INFO - Completed ETL process for AVGO - Success: True
+2025-11-10 11:19:46,307 - INFO -   Company: N/A, Sector: N/A
+2025-11-10 11:20:01,308 - INFO - Fetching data for TMO (Thermo Fisher Scientific Inc)
+2025-11-10 11:20:01,309 - INFO - Starting ETL process for TMO (attempt 1/3)
+2025-11-10 11:20:01,309 - INFO - Starting ETL process for TMO
+2025-11-10 11:20:01,309 - INFO - Extracting stock data for TMO
+2025-11-10 11:20:01,866 - INFO - Extracted 5 records for TMO
+2025-11-10 11:20:01,867 - INFO - Transformed 5 stock records for TMO
+2025-11-10 11:20:01,876 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:20:01,876 - INFO - Successfully loaded stock data for TMO
+2025-11-10 11:20:01,877 - INFO - Extracting company info for TMO
+2025-11-10 11:20:02,341 - INFO - Successfully extracted company info for TMO
+2025-11-10 11:20:02,344 - INFO - Updated company info for TMO
+2025-11-10 11:20:02,344 - INFO - Completed ETL process for TMO - Success: True
+2025-11-10 11:20:03,913 - INFO -   Company: N/A, Sector: N/A
+2025-11-10 11:20:18,914 - INFO - Fetching data for COST (Costco Wholesale Corporation)
+2025-11-10 11:20:18,915 - INFO - Starting ETL process for COST (attempt 1/3)
+2025-11-10 11:20:18,915 - INFO - Starting ETL process for COST
+2025-11-10 11:20:18,915 - INFO - Extracting stock data for COST
+2025-11-10 11:20:19,266 - INFO - Extracted 5 records for COST
+2025-11-10 11:20:19,266 - INFO - Transformed 5 stock records for COST
+2025-11-10 11:20:19,277 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:20:19,277 - INFO - Successfully loaded stock data for COST
+2025-11-10 11:20:19,277 - INFO - Extracting company info for COST
+2025-11-10 11:20:19,813 - INFO - Successfully extracted company info for COST
+2025-11-10 11:20:19,816 - INFO - Updated company info for COST
+2025-11-10 11:20:19,817 - INFO - Completed ETL process for COST - Success: True
+2025-11-10 11:20:21,019 - INFO -   Company: N/A, Sector: N/A
+2025-11-10 11:20:36,020 - INFO - Fetching data for WMT (Walmart Inc)
+2025-11-10 11:20:36,021 - INFO - Starting ETL process for WMT (attempt 1/3)
+2025-11-10 11:20:36,022 - INFO - Starting ETL process for WMT
+2025-11-10 11:20:36,022 - INFO - Extracting stock data for WMT
+2025-11-10 11:20:36,544 - INFO - Extracted 5 records for WMT
+2025-11-10 11:20:36,544 - INFO - Transformed 5 stock records for WMT
+2025-11-10 11:20:36,556 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:20:36,556 - INFO - Successfully loaded stock data for WMT
+2025-11-10 11:20:36,556 - INFO - Extracting company info for WMT
+2025-11-10 11:20:36,963 - INFO - Successfully extracted company info for WMT
+2025-11-10 11:20:36,969 - INFO - Updated company info for WMT
+2025-11-10 11:20:36,970 - INFO - Completed ETL process for WMT - Success: True
+2025-11-10 11:20:38,110 - INFO -   Company: N/A, Sector: N/A
+2025-11-10 11:20:53,111 - INFO - Fetching data for LLY (Eli Lilly and Company)
+2025-11-10 11:20:53,112 - INFO - Starting ETL process for LLY (attempt 1/3)
+2025-11-10 11:20:53,112 - INFO - Starting ETL process for LLY
+2025-11-10 11:20:53,112 - INFO - Extracting stock data for LLY
+2025-11-10 11:20:53,561 - INFO - Extracted 5 records for LLY
+2025-11-10 11:20:53,561 - INFO - Transformed 5 stock records for LLY
+2025-11-10 11:20:53,571 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:20:53,571 - INFO - Successfully loaded stock data for LLY
+2025-11-10 11:20:53,571 - INFO - Extracting company info for LLY
+2025-11-10 11:20:53,957 - INFO - Successfully extracted company info for LLY
+2025-11-10 11:20:53,965 - INFO - Updated company info for LLY
+2025-11-10 11:20:53,965 - INFO - Completed ETL process for LLY - Success: True
+2025-11-10 11:20:55,561 - INFO -   Company: N/A, Sector: N/A
+2025-11-10 11:21:10,562 - INFO - Fetching data for NFLX (Netflix Inc)
+2025-11-10 11:21:10,562 - INFO - Starting ETL process for NFLX (attempt 1/3)
+2025-11-10 11:21:10,563 - INFO - Starting ETL process for NFLX
+2025-11-10 11:21:10,563 - INFO - Extracting stock data for NFLX
+2025-11-10 11:21:10,839 - INFO - Extracted 5 records for NFLX
+2025-11-10 11:21:10,840 - INFO - Transformed 5 stock records for NFLX
+2025-11-10 11:21:10,872 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:21:10,873 - INFO - Successfully loaded stock data for NFLX
+2025-11-10 11:21:10,873 - INFO - Extracting company info for NFLX
+2025-11-10 11:21:11,266 - INFO - Successfully extracted company info for NFLX
+2025-11-10 11:21:11,270 - INFO - Updated company info for NFLX
+2025-11-10 11:21:11,271 - INFO - Completed ETL process for NFLX - Success: True
+2025-11-10 11:21:12,734 - INFO -   Company: N/A, Sector: N/A
+2025-11-10 11:21:27,735 - INFO - Fetching data for ADBE (Adobe Inc)
+2025-11-10 11:21:27,735 - INFO - Starting ETL process for ADBE (attempt 1/3)
+2025-11-10 11:21:27,735 - INFO - Starting ETL process for ADBE
+2025-11-10 11:21:27,735 - INFO - Extracting stock data for ADBE
+2025-11-10 11:21:28,022 - INFO - Extracted 5 records for ADBE
+2025-11-10 11:21:28,023 - INFO - Transformed 5 stock records for ADBE
+2025-11-10 11:21:28,033 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:21:28,034 - INFO - Successfully loaded stock data for ADBE
+2025-11-10 11:21:28,034 - INFO - Extracting company info for ADBE
+2025-11-10 11:21:28,455 - INFO - Successfully extracted company info for ADBE
+2025-11-10 11:21:28,461 - INFO - Updated company info for ADBE
+2025-11-10 11:21:28,468 - INFO - Completed ETL process for ADBE - Success: True
+2025-11-10 11:21:30,342 - INFO -   Company: N/A, Sector: N/A
+2025-11-10 11:21:45,343 - INFO - Fetching data for CRM (Salesforce Inc)
+2025-11-10 11:21:45,344 - INFO - Starting ETL process for CRM (attempt 1/3)
+2025-11-10 11:21:45,344 - INFO - Starting ETL process for CRM
+2025-11-10 11:21:45,344 - INFO - Extracting stock data for CRM
+2025-11-10 11:21:45,682 - INFO - Extracted 5 records for CRM
+2025-11-10 11:21:45,682 - INFO - Transformed 5 stock records for CRM
+2025-11-10 11:21:45,693 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:21:45,694 - INFO - Successfully loaded stock data for CRM
+2025-11-10 11:21:45,694 - INFO - Extracting company info for CRM
+2025-11-10 11:21:46,065 - INFO - Successfully extracted company info for CRM
+2025-11-10 11:21:46,070 - INFO - Updated company info for CRM
+2025-11-10 11:21:46,070 - INFO - Completed ETL process for CRM - Success: True
+2025-11-10 11:21:47,804 - INFO -   Company: N/A, Sector: N/A
+2025-11-10 11:22:02,805 - INFO - Fetching data for ORCL (Oracle Corporation)
+2025-11-10 11:22:02,806 - INFO - Starting ETL process for ORCL (attempt 1/3)
+2025-11-10 11:22:02,807 - INFO - Starting ETL process for ORCL
+2025-11-10 11:22:02,808 - INFO - Extracting stock data for ORCL
+2025-11-10 11:22:03,131 - INFO - Extracted 5 records for ORCL
+2025-11-10 11:22:03,132 - INFO - Transformed 5 stock records for ORCL
+2025-11-10 11:22:03,154 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:22:03,154 - INFO - Successfully loaded stock data for ORCL
+2025-11-10 11:22:03,155 - INFO - Extracting company info for ORCL
+2025-11-10 11:22:03,540 - INFO - Successfully extracted company info for ORCL
+2025-11-10 11:22:03,547 - INFO - Updated company info for ORCL
+2025-11-10 11:22:03,548 - INFO - Completed ETL process for ORCL - Success: True
+2025-11-10 11:22:05,130 - INFO -   Company: N/A, Sector: N/A
+2025-11-10 11:22:20,131 - INFO - Fetching data for ACN (Accenture plc)
+2025-11-10 11:22:20,132 - INFO - Starting ETL process for ACN (attempt 1/3)
+2025-11-10 11:22:20,133 - INFO - Starting ETL process for ACN
+2025-11-10 11:22:20,133 - INFO - Extracting stock data for ACN
+2025-11-10 11:22:20,676 - INFO - Extracted 5 records for ACN
+2025-11-10 11:22:20,677 - INFO - Transformed 5 stock records for ACN
+2025-11-10 11:22:20,692 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:22:20,692 - INFO - Successfully loaded stock data for ACN
+2025-11-10 11:22:20,692 - INFO - Extracting company info for ACN
+2025-11-10 11:22:21,096 - INFO - Successfully extracted company info for ACN
+2025-11-10 11:22:21,102 - INFO - Updated company info for ACN
+2025-11-10 11:22:21,103 - INFO - Completed ETL process for ACN - Success: True
+2025-11-10 11:22:22,159 - INFO -   Company: N/A, Sector: N/A
+2025-11-10 11:22:37,160 - INFO - Updating news data...
+2025-11-10 11:22:37,161 - INFO - Fetching market news...
+2025-11-10 11:22:37,917 - INFO - Starting news ETL process
+2025-11-10 11:22:37,917 - INFO - Extracting news data with query: None
+2025-11-10 11:22:40,155 - INFO - Successfully extracted 3 news articles
+2025-11-10 11:22:40,162 - INFO - Transformed 3 news records
+2025-11-10 11:22:40,249 - INFO - Successfully loaded and processed 3 news records
+2025-11-10 11:22:40,249 - INFO - Completed news ETL process
+2025-11-10 11:22:40,251 - INFO - === Cycle 1 completed in 560.2s ===
+2025-11-10 11:22:40,251 - INFO - Updated 30 stocks this cycle
+2025-11-10 11:22:40,251 - INFO - Next cycle in 300s...
+
+2025-11-10 11:27:40,252 - INFO - === Cycle 2 started at 2025-11-10 11:27:40 ===
+2025-11-10 11:27:40,253 - INFO - Fetching data for AAPL (Apple Inc)
+2025-11-10 11:27:40,254 - INFO - Starting ETL process for AAPL (attempt 1/3)
+2025-11-10 11:27:40,254 - INFO - Starting ETL process for AAPL
+2025-11-10 11:27:40,255 - INFO - Extracting stock data for AAPL
+2025-11-10 11:27:40,780 - INFO - Extracted 5 records for AAPL
+2025-11-10 11:27:40,781 - INFO - Transformed 5 stock records for AAPL
+2025-11-10 11:27:40,789 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:27:40,790 - INFO - Successfully loaded stock data for AAPL
+2025-11-10 11:27:40,790 - INFO - Extracting company info for AAPL
+2025-11-10 11:27:41,255 - INFO - Successfully extracted company info for AAPL
+2025-11-10 11:27:41,258 - INFO - Updated company info for AAPL
+2025-11-10 11:27:41,259 - INFO - Completed ETL process for AAPL - Success: True
+2025-11-10 11:27:43,124 - INFO -   Company: N/A, Sector: N/A
+2025-11-10 11:27:58,125 - INFO - Fetching data for MSFT (Microsoft Corporation)
+2025-11-10 11:27:58,126 - INFO - Starting ETL process for MSFT (attempt 1/3)
+2025-11-10 11:27:58,126 - INFO - Starting ETL process for MSFT
+2025-11-10 11:27:58,127 - INFO - Extracting stock data for MSFT
+2025-11-10 11:27:58,361 - INFO - Extracted 5 records for MSFT
+2025-11-10 11:27:58,361 - INFO - Transformed 5 stock records for MSFT
+2025-11-10 11:27:58,369 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:27:58,369 - INFO - Successfully loaded stock data for MSFT
+2025-11-10 11:27:58,369 - INFO - Extracting company info for MSFT
+2025-11-10 11:27:58,604 - INFO - Successfully extracted company info for MSFT
+2025-11-10 11:27:58,607 - INFO - Updated company info for MSFT
+2025-11-10 11:27:58,607 - INFO - Completed ETL process for MSFT - Success: True
+2025-11-10 11:27:59,840 - INFO -   Company: N/A, Sector: N/A
+2025-11-10 11:28:14,841 - INFO - Fetching data for GOOGL (Alphabet Inc)
+2025-11-10 11:28:14,841 - INFO - Starting ETL process for GOOGL (attempt 1/3)
+2025-11-10 11:28:14,842 - INFO - Starting ETL process for GOOGL
+2025-11-10 11:28:14,842 - INFO - Extracting stock data for GOOGL
+2025-11-10 11:28:14,997 - INFO - Extracted 5 records for GOOGL
+2025-11-10 11:28:14,998 - INFO - Transformed 5 stock records for GOOGL
+2025-11-10 11:28:15,007 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:28:15,008 - INFO - Successfully loaded stock data for GOOGL
+2025-11-10 11:28:15,008 - INFO - Extracting company info for GOOGL
+2025-11-10 11:28:15,237 - INFO - Successfully extracted company info for GOOGL
+2025-11-10 11:28:15,240 - INFO - Updated company info for GOOGL
+2025-11-10 11:28:15,240 - INFO - Completed ETL process for GOOGL - Success: True
+2025-11-10 11:28:16,980 - INFO -   Company: N/A, Sector: N/A
+2025-11-10 11:28:31,981 - INFO - Fetching data for AMZN (Amazon.com Inc)
+2025-11-10 11:28:31,982 - INFO - Starting ETL process for AMZN (attempt 1/3)
+2025-11-10 11:28:31,982 - INFO - Starting ETL process for AMZN
+2025-11-10 11:28:31,982 - INFO - Extracting stock data for AMZN
+2025-11-10 11:28:32,166 - INFO - Extracted 5 records for AMZN
+2025-11-10 11:28:32,168 - INFO - Transformed 5 stock records for AMZN
+2025-11-10 11:28:32,176 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:28:32,176 - INFO - Successfully loaded stock data for AMZN
+2025-11-10 11:28:32,176 - INFO - Extracting company info for AMZN
+2025-11-10 11:28:32,390 - INFO - Successfully extracted company info for AMZN
+2025-11-10 11:28:32,395 - INFO - Updated company info for AMZN
+2025-11-10 11:28:32,396 - INFO - Completed ETL process for AMZN - Success: True
+2025-11-10 11:28:33,739 - INFO -   Company: N/A, Sector: N/A
+2025-11-10 11:28:48,740 - INFO - Fetching data for NVDA (NVIDIA Corporation)
+2025-11-10 11:28:48,741 - INFO - Starting ETL process for NVDA (attempt 1/3)
+2025-11-10 11:28:48,741 - INFO - Starting ETL process for NVDA
+2025-11-10 11:28:48,742 - INFO - Extracting stock data for NVDA
+2025-11-10 11:28:48,881 - INFO - Extracted 5 records for NVDA
+2025-11-10 11:28:48,881 - INFO - Transformed 5 stock records for NVDA
+2025-11-10 11:28:48,889 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:28:48,889 - INFO - Successfully loaded stock data for NVDA
+2025-11-10 11:28:48,889 - INFO - Extracting company info for NVDA
+2025-11-10 11:28:50,532 - INFO - Successfully extracted company info for NVDA
+2025-11-10 11:28:50,535 - INFO - Updated company info for NVDA
+2025-11-10 11:28:50,536 - INFO - Completed ETL process for NVDA - Success: True
+2025-11-10 11:28:51,635 - INFO -   Company: N/A, Sector: N/A
+2025-11-10 11:29:06,636 - INFO - Fetching data for TSLA (Tesla Inc)
+2025-11-10 11:29:06,637 - INFO - Starting ETL process for TSLA (attempt 1/3)
+2025-11-10 11:29:06,639 - INFO - Starting ETL process for TSLA
+2025-11-10 11:29:06,639 - INFO - Extracting stock data for TSLA
+2025-11-10 11:29:06,754 - INFO - Extracted 5 records for TSLA
+2025-11-10 11:29:06,754 - INFO - Transformed 5 stock records for TSLA
+2025-11-10 11:29:06,763 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:29:06,763 - INFO - Successfully loaded stock data for TSLA
+2025-11-10 11:29:06,763 - INFO - Extracting company info for TSLA
+2025-11-10 11:29:07,013 - INFO - Successfully extracted company info for TSLA
+2025-11-10 11:29:07,017 - INFO - Updated company info for TSLA
+2025-11-10 11:29:07,017 - INFO - Completed ETL process for TSLA - Success: True
+2025-11-10 11:29:08,709 - INFO -   Company: N/A, Sector: N/A
+2025-11-10 11:29:23,711 - INFO - Fetching data for META (Meta Platforms Inc)
+2025-11-10 11:29:23,711 - INFO - Starting ETL process for META (attempt 1/3)
+2025-11-10 11:29:23,712 - INFO - Starting ETL process for META
+2025-11-10 11:29:23,712 - INFO - Extracting stock data for META
+2025-11-10 11:29:23,955 - INFO - Extracted 5 records for META
+2025-11-10 11:29:23,956 - INFO - Transformed 5 stock records for META
+2025-11-10 11:29:23,967 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:29:23,967 - INFO - Successfully loaded stock data for META
+2025-11-10 11:29:23,969 - INFO - Extracting company info for META
+2025-11-10 11:29:24,228 - INFO - Successfully extracted company info for META
+2025-11-10 11:29:24,231 - INFO - Updated company info for META
+2025-11-10 11:29:24,232 - INFO - Completed ETL process for META - Success: True
+2025-11-10 11:29:25,337 - INFO -   Company: N/A, Sector: N/A
+2025-11-10 11:29:40,339 - INFO - Fetching data for BRK.B (Berkshire Hathaway Inc)
+2025-11-10 11:29:40,339 - INFO - Starting ETL process for BRK.B (attempt 1/3)
+2025-11-10 11:29:40,340 - INFO - Starting ETL process for BRK.B
+2025-11-10 11:29:40,340 - INFO - Extracting stock data for BRK.B
+2025-11-10 11:29:40,837 - ERROR - $BRK.B: possibly delisted; no price data found  (period=5d) (Yahoo error = "No data found, symbol may be delisted")
+2025-11-10 11:29:40,838 - WARNING - No data received for BRK.B
+2025-11-10 11:29:40,839 - WARNING - No data received for BRK.B
+2025-11-10 11:29:40,839 - INFO - Extracting company info for BRK.B
+2025-11-10 11:29:41,058 - INFO - Successfully extracted company info for BRK.B
+2025-11-10 11:29:41,061 - WARNING - Stock BRK.B not found for company info update
+2025-11-10 11:29:41,062 - INFO - Completed ETL process for BRK.B - Success: False
+2025-11-10 11:29:41,063 - WARNING - ETL reported failure for BRK.B on attempt 1
+2025-11-10 11:29:41,063 - INFO - Retrying BRK.B after 2s backoff...
+2025-11-10 11:29:43,065 - INFO - Starting ETL process for BRK.B (attempt 2/3)
+2025-11-10 11:29:43,065 - INFO - Starting ETL process for BRK.B
+2025-11-10 11:29:43,066 - INFO - Extracting stock data for BRK.B
+2025-11-10 11:29:43,580 - ERROR - $BRK.B: possibly delisted; no price data found  (period=5d) (Yahoo error = "No data found, symbol may be delisted")
+2025-11-10 11:29:43,581 - WARNING - No data received for BRK.B
+2025-11-10 11:29:43,582 - WARNING - No data received for BRK.B
+2025-11-10 11:29:43,582 - INFO - Extracting company info for BRK.B
+2025-11-10 11:29:43,876 - INFO - Successfully extracted company info for BRK.B
+2025-11-10 11:29:43,878 - WARNING - Stock BRK.B not found for company info update
+2025-11-10 11:29:43,878 - INFO - Completed ETL process for BRK.B - Success: False
+2025-11-10 11:29:43,879 - WARNING - ETL reported failure for BRK.B on attempt 2
+2025-11-10 11:29:43,879 - INFO - Retrying BRK.B after 4s backoff...
+2025-11-10 11:29:47,880 - INFO - Starting ETL process for BRK.B (attempt 3/3)
+2025-11-10 11:29:47,881 - INFO - Starting ETL process for BRK.B
+2025-11-10 11:29:47,882 - INFO - Extracting stock data for BRK.B
+2025-11-10 11:29:48,835 - ERROR - $BRK.B: possibly delisted; no price data found  (period=5d) (Yahoo error = "No data found, symbol may be delisted")
+2025-11-10 11:29:48,836 - WARNING - No data received for BRK.B
+2025-11-10 11:29:48,837 - WARNING - No data received for BRK.B
+2025-11-10 11:29:48,837 - INFO - Extracting company info for BRK.B
+2025-11-10 11:29:49,101 - INFO - Successfully extracted company info for BRK.B
+2025-11-10 11:29:49,104 - WARNING - Stock BRK.B not found for company info update
+2025-11-10 11:29:49,104 - INFO - Completed ETL process for BRK.B - Success: False
+2025-11-10 11:29:49,105 - WARNING - ETL reported failure for BRK.B on attempt 3
+2025-11-10 11:29:49,105 - WARNING - Failed to store data for BRK.B in database after 3 attempts
+2025-11-10 11:30:04,106 - INFO - Fetching data for UNH (UnitedHealth Group Inc)
+2025-11-10 11:30:04,107 - INFO - Starting ETL process for UNH (attempt 1/3)
+2025-11-10 11:30:04,108 - INFO - Starting ETL process for UNH
+2025-11-10 11:30:04,108 - INFO - Extracting stock data for UNH
+2025-11-10 11:30:04,297 - INFO - Extracted 5 records for UNH
+2025-11-10 11:30:04,298 - INFO - Transformed 5 stock records for UNH
+2025-11-10 11:30:04,311 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:30:04,312 - INFO - Successfully loaded stock data for UNH
+2025-11-10 11:30:04,312 - INFO - Extracting company info for UNH
+2025-11-10 11:30:04,567 - INFO - Successfully extracted company info for UNH
+2025-11-10 11:30:04,572 - INFO - Updated company info for UNH
+2025-11-10 11:30:04,573 - INFO - Completed ETL process for UNH - Success: True
+2025-11-10 11:30:07,501 - INFO -   Company: N/A, Sector: N/A
+2025-11-10 11:30:22,503 - INFO - Fetching data for JNJ (Johnson & Johnson)
+2025-11-10 11:30:22,506 - INFO - Starting ETL process for JNJ (attempt 1/3)
+2025-11-10 11:30:22,507 - INFO - Starting ETL process for JNJ
+2025-11-10 11:30:22,508 - INFO - Extracting stock data for JNJ
+2025-11-10 11:30:22,805 - INFO - Extracted 5 records for JNJ
+2025-11-10 11:30:22,809 - INFO - Transformed 5 stock records for JNJ
+2025-11-10 11:30:22,829 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:30:22,830 - INFO - Successfully loaded stock data for JNJ
+2025-11-10 11:30:22,830 - INFO - Extracting company info for JNJ
+2025-11-10 11:30:23,109 - INFO - Successfully extracted company info for JNJ
+2025-11-10 11:30:23,112 - INFO - Updated company info for JNJ
+2025-11-10 11:30:23,112 - INFO - Completed ETL process for JNJ - Success: True
+2025-11-10 11:30:25,171 - INFO -   Company: N/A, Sector: N/A
