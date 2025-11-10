@@ -7851,3 +7851,16 @@ DETAIL:  Key (stock_id, news_id)=(30, 84) already exists.
 2025-11-10 11:30:40,695 - INFO - Updated company info for JPM
 2025-11-10 11:30:40,695 - INFO - Completed ETL process for JPM - Success: True
 2025-11-10 11:30:43,418 - INFO -   Company: N/A, Sector: N/A
+2025-11-10 11:30:58,421 - INFO - Fetching data for V (Visa Inc)
+2025-11-10 11:30:58,422 - INFO - Starting ETL process for V (attempt 1/3)
+2025-11-10 11:30:58,422 - INFO - Starting ETL process for V
+2025-11-10 11:30:58,423 - INFO - Extracting stock data for V
+2025-11-10 11:30:58,592 - INFO - Extracted 5 records for V
+2025-11-10 11:30:58,593 - INFO - Transformed 5 stock records for V
+2025-11-10 11:30:58,606 - INFO - Successfully loaded 5 stock price records
+2025-11-10 11:30:58,606 - INFO - Successfully loaded stock data for V
+2025-11-10 11:30:58,607 - INFO - Extracting company info for V
+2025-11-10 11:30:58,882 - INFO - Successfully extracted company info for V
+2025-11-10 11:30:58,888 - INFO - Updated company info for V
+2025-11-10 11:30:58,890 - INFO - Completed ETL process for V - Success: True
+2025-11-10 11:31:01,059 - INFO -   Company: N/A, Sector: N/A
