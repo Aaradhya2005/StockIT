@@ -7864,3 +7864,12 @@ DETAIL:  Key (stock_id, news_id)=(30, 84) already exists.
 2025-11-10 11:30:58,888 - INFO - Updated company info for V
 2025-11-10 11:30:58,890 - INFO - Completed ETL process for V - Success: True
 2025-11-10 11:31:01,059 - INFO -   Company: N/A, Sector: N/A
+2025-11-18 08:11:02,907 - INFO - ============================================================
+2025-11-18 08:11:02,907 - INFO - LINKING EXISTING NEWS ARTICLES TO STOCKS
+2025-11-18 08:11:02,908 - INFO - ============================================================
+2025-11-18 08:11:03,117 - INFO - Loaded 30 tracked symbols from the database.
+2025-11-18 08:11:03,118 - INFO - ETL Pipeline initialized
+2025-11-18 08:11:03,118 - INFO - Linking existing news articles to stocks...
+2025-11-18 08:11:03,171 - INFO - Linked 0 existing news articles to stocks
+2025-11-18 08:11:03,171 - INFO - Successfully linked existing news articles!
+2025-11-18 08:11:03,172 - INFO - ETL Pipeline closed
