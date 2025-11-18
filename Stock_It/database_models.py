@@ -195,16 +195,16 @@ class DatabaseManager:
         try:
             self.engine = create_engine(database_url, echo=False)
             self.SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=self.engine)
-            print(f"✅ Connected to database: {db_name}")
+            print(f"Connected to database: {db_name}")
         except Exception as e:
-            print(f"❌ Database connection failed: {e}")
+            print(f"Database connection failed: {e}")
             raise
     
     def create_tables(self):
         """Create all tables in the database."""
         try:
             Base.metadata.create_all(bind=self.engine)
-            print("✅ All tables created successfully")
+            print("All tables created successfully")
         except Exception as e:
             print(f"❌ Table creation failed: {e}")
             raise
