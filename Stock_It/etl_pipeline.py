@@ -10,7 +10,7 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
 from database_models import (
-    db_manager, Stock, StockPrice, NewsSource, FinancialNews, 
+    db_manager, Stock, StockPrice, FinancialNews, 
     StockNewsRelation, SentimentAnalysis, DailyStockSummary
 )
 from yahoo_finance_fetcher import YahooFinanceDataFetcher
@@ -227,44 +227,37 @@ class ETLPipeline:
         try:
             news_records_to_process = []
             target_stock = None
-            
+
             # If symbol is provided, get the stock for direct linking
             if symbol:
                 target_stock = self.session.query(Stock).filter_by(symbol=symbol.upper()).first()
                 if target_stock:
                     logger.info(f"Will directly link news to stock: {symbol.upper()}")
-            
+
             for record in transformed_data:
-                source = self.session.query(NewsSource).filter_by(
-                    source_name=record['source_name']
-                ).first()
-                
-                if not source:
-                    source = NewsSource(
-                        source_name=record['source_name'],
-                        credibility_score=0.50,
-                        is_active=True
-                    )
-                    self.session.add(source)
-                    self.session.flush()
-                
                 existing_news = self.session.query(FinancialNews).filter_by(
                     url=record['url']
                 ).first()
-                
+
                 if not existing_news and record['url']:
                     news_record = FinancialNews(
-                        source_id=source.source_id,
+                        news_source=record.get('source_name'),
                         title=record['title'],
                         content=record['content'],
                         author=record['author'],
                         published_at=record['published_at'],
                         url=record['url']
                     )
+
+                    # If ETL was called for a specific symbol, set company and symbol now
+                    if target_stock:
+                        news_record.symbol = target_stock.symbol
+                        news_record.company = target_stock.company_name
+
                     self.session.add(news_record)
                     news_records_to_process.append((news_record, target_stock))
 
-            self.session.flush() # Flush to get news_id for new records
+            self.session.flush()  # Flush to get news_id for new records
 
             for news_record, direct_stock in news_records_to_process:
                 self.analyze_and_store_sentiment(news_record)
@@ -312,6 +305,17 @@ class ETLPipeline:
                 analysis_model='TextBlob'
             )
             self.session.add(textblob_sentiment)
+
+            # Set aggregated/simple sentiment label on the news record (use VADER result)
+            try:
+                sentiment_label = vader_result.get('sentiment_label') if vader_result and 'sentiment_label' in vader_result else None
+                if sentiment_label:
+                    news_record.sentiment = sentiment_label
+                    self.session.add(news_record)
+                    self.session.flush()
+            except Exception:
+                # Don't block sentiment storage if this fails
+                pass
             
         except Exception as e:
             logger.error(f"Error in sentiment analysis for news ID {news_record.news_id}: {e}")
@@ -331,6 +335,13 @@ class ETLPipeline:
                     relevance_score=0.90  # Higher score for direct links
                 )
                 self.session.add(relation)
+                # Update news record with symbol/company if not already set
+                if not news_record.symbol:
+                    news_record.symbol = stock.symbol
+                if not news_record.company:
+                    news_record.company = stock.company_name
+                self.session.add(news_record)
+                self.session.flush()
                 logger.debug(f"Directly linked news {news_record.news_id} to stock {stock.symbol}")
         except Exception as e:
             logger.error(f"Error directly linking news to stock for news ID {news_record.news_id}: {e}")
@@ -358,6 +369,13 @@ class ETLPipeline:
                             relevance_score=0.75
                         )
                         self.session.add(relation)
+                        # If the news record doesn't yet have symbol/company, set it using this matched stock
+                        if not news_record.symbol:
+                            news_record.symbol = stock.symbol
+                        if not news_record.company:
+                            news_record.company = stock.company_name
+                        self.session.add(news_record)
+                        self.session.flush()
                         logger.debug(f"Linked news {news_record.news_id} to stock {stock.symbol} via text matching")
             
         except Exception as e:

@@ -54,33 +54,22 @@ class StockPrice(Base):
     # Relationships
     stock = relationship("Stock", back_populates="stock_prices")
 
-class NewsSource(Base):
-    __tablename__ = 'news_sources'
-    
-    source_id = Column(Integer, primary_key=True)
-    source_name = Column(String(255), nullable=False, unique=True)
-    source_url = Column(String(500))
-    credibility_score = Column(Numeric(3, 2), default=0.50)
-    is_active = Column(Boolean, default=True)
-    created_at = Column(DateTime, default=func.current_timestamp())
-    
-    # Relationships
-    financial_news = relationship("FinancialNews", back_populates="source")
-
 class FinancialNews(Base):
     __tablename__ = 'financial_news'
-    
+
     news_id = Column(Integer, primary_key=True)
-    source_id = Column(Integer, ForeignKey('news_sources.source_id'), nullable=False)
+    news_source = Column(String(255))
+    company = Column(String(255))
+    symbol = Column(String(10))
+    sentiment = Column(String(20))
     title = Column(String(500), nullable=False)
     content = Column(Text)
     author = Column(String(255))
     published_at = Column(DateTime, nullable=False)
     url = Column(String(1000), unique=True)
     created_at = Column(DateTime, default=func.current_timestamp())
-    
+
     # Relationships
-    source = relationship("NewsSource", back_populates="financial_news")
     stock_news_relations = relationship("StockNewsRelation", back_populates="news", cascade="all, delete-orphan")
     sentiment_analysis = relationship("SentimentAnalysis", back_populates="news", cascade="all, delete-orphan")
 
@@ -195,16 +184,16 @@ class DatabaseManager:
         try:
             self.engine = create_engine(database_url, echo=False)
             self.SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=self.engine)
-            print(f"✅ Connected to database: {db_name}")
+            print(f"Connected to database: {db_name}")
         except Exception as e:
-            print(f"❌ Database connection failed: {e}")
+            print(f"Database connection failed: {e}")
             raise
     
     def create_tables(self):
         """Create all tables in the database."""
         try:
             Base.metadata.create_all(bind=self.engine)
-            print("✅ All tables created successfully")
+            print("All tables created successfully")
         except Exception as e:
             print(f"❌ Table creation failed: {e}")
             raise

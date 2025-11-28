@@ -32,9 +32,9 @@ def setup_database():
         
         if not exists:
             cursor.execute(f'CREATE DATABASE {db_name}')
-            print(f"✅ Created database: {db_name}")
+            print(f"Created database: {db_name}")
         else:
-            print(f"✅ Database {db_name} already exists")
+            print(f"Database {db_name} already exists")
         
         cursor.close()
         conn.close()

@@ -75,13 +75,13 @@ class ContinuousStockTracker:
                 logger.error("API key validation failed")
                 return False
             
-            logger.info("✓ API keys validated successfully")
+            logger.info("API keys validated successfully")
             
             self.db_manager = DatabaseManager()
-            logger.info("✓ Database connection established")
+            logger.info("Database connection established")
             
             self.etl_pipeline = ETLPipeline()
-            logger.info("✓ ETL Pipeline initialized")
+            logger.info("ETL Pipeline initialized")
             
             return True
             
@@ -135,7 +135,7 @@ class ContinuousStockTracker:
                 if stock_data is not None:
                     df = self.alpha_vantage.format_daily_data_to_dataframe(stock_data)
                     if df is not None and not df.empty:
-                        logger.info(f"✓ Successfully stored {len(df)} days of data for {symbol}")
+                        logger.info(f"Successfully stored {len(df)} days of data for {symbol}")
                         
                         # Display latest data
                         latest_data = df.iloc[-1]  # Most recent data is at the end after sorting
@@ -171,13 +171,13 @@ class ContinuousStockTracker:
             market_news = self.news_api.get_financial_market_news()
             
             if market_news:
-                logger.info(f"✓ Fetched {len(market_news)} market news articles")
+                logger.info(f"Fetched {len(market_news)} market news articles")
                 
                 # Use ETL pipeline to load news data
                 success = self.etl_pipeline.run_news_etl()
                 
                 if success:
-                    logger.info("✓ Successfully stored news data in database")
+                    logger.info("Successfully stored news data in database")
                     self.last_news_update = datetime.now()
                     return True
                 else:
@@ -250,7 +250,7 @@ class ContinuousStockTracker:
             # Cleanup
             if self.db_manager:
                 self.db_manager.close_all_sessions()
-                logger.info("✓ Database connections closed")
+                logger.info("Database connections closed")
             
             logger.info(f"Completed {cycle_count} tracking cycles")
             logger.info("Continuous tracking stopped successfully")

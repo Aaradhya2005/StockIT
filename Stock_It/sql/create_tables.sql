@@ -32,20 +32,13 @@ CREATE TABLE stock_prices (
     UNIQUE(stock_id, date)
 );
 
--- 3. news_sources - News source information for credibility tracking
-CREATE TABLE news_sources (
-    source_id SERIAL PRIMARY KEY,
-    source_name VARCHAR(255) NOT NULL UNIQUE,
-    source_url VARCHAR(500),
-    credibility_score DECIMAL(3, 2) DEFAULT 0.50,
-    is_active BOOLEAN DEFAULT TRUE,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
--- 4. financial_news - Financial news articles
+-- 3. financial_news - Financial news articles (flattened source info)
 CREATE TABLE financial_news (
     news_id SERIAL PRIMARY KEY,
-    source_id INTEGER NOT NULL REFERENCES news_sources(source_id),
+    news_source VARCHAR(255),
+    company VARCHAR(255),
+    symbol VARCHAR(10),
+    sentiment VARCHAR(20),
     title VARCHAR(500) NOT NULL,
     content TEXT,
     author VARCHAR(255),
@@ -78,22 +71,7 @@ CREATE TABLE sentiment_analysis (
 
 -- Advanced Tables
 
--- 7. stock_predictions - ML model predictions for stock prices
-CREATE TABLE stock_predictions (
-    prediction_id SERIAL PRIMARY KEY,
-    stock_id INTEGER NOT NULL REFERENCES stocks(stock_id) ON DELETE CASCADE,
-    prediction_date DATE NOT NULL,
-    target_date DATE NOT NULL,
-    predicted_price DECIMAL(12, 4) NOT NULL,
-    actual_price DECIMAL(12, 4),
-    confidence_interval_lower DECIMAL(12, 4),
-    confidence_interval_upper DECIMAL(12, 4),
-    model_name VARCHAR(100) NOT NULL,
-    model_version VARCHAR(50),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
--- 8. daily_stock_summary - Daily aggregated summary data
+-- 7. daily_stock_summary - Daily aggregated summary data
 CREATE TABLE daily_stock_summary (
     summary_id SERIAL PRIMARY KEY,
     stock_id INTEGER NOT NULL REFERENCES stocks(stock_id) ON DELETE CASCADE,
@@ -110,7 +88,7 @@ CREATE TABLE daily_stock_summary (
 
 -- Real-Time Data Table
 
--- 9. stock_ticks - High-frequency trade ticks for real-time analytics
+-- 8. stock_ticks - High-frequency trade ticks for real-time analytics
 CREATE TABLE stock_ticks (
     id SERIAL PRIMARY KEY,
     stock_id INTEGER NOT NULL REFERENCES stocks(stock_id) ON DELETE CASCADE,
