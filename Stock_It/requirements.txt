@@ -1,0 +1,11 @@
+requests==2.31.0
+pandas==2.0.3
+python-dotenv==1.0.0
+alpha-vantage==2.3.1
+newsapi-python==0.2.7
+psycopg2-binary
+sqlalchemy
+schedule
+websocket-client
+textblob
+vaderSentiment
